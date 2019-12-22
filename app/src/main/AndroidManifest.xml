@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bimbinganpasi">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:name=".BimbPA"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Kosong"></activity>
+        <activity android:name=".LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Form_Dosen_Menu"/>
+        <activity android:name=".Form_Mhs_Menu"/>
+        <activity
+            android:name=".Form_Mhs_00"
+            android:launchMode="singleInstance"></activity>
+        <activity android:name=".Form_Mhs_00_edit" />
+        <activity android:name=".Form_Mhs_00_Photo" />
+        <activity android:name=".Form_Mhs_01" />
+        <activity android:name=".Form_Mhs_01_edit0" />
+        <activity android:name=".Form_Mhs_01_edit1" />
+        <activity android:name=".Form_Mhs_01_edit2" />
+        <activity android:name=".Form_Mhs_01_edit3" />
+        <activity android:name=".Form_Mhs_02" />
+        <activity android:name=".Form_Mhs_02_tambah"/>
+        <activity android:name=".Form_Mhs_02_Detail"/>
+        <activity android:name=".Form_Mhs_03" />
+        <activity android:name=".Form_Mhs_04" />
+        <activity android:name=".Form_Mhs_05" />
+    </application>
+
+</manifest>

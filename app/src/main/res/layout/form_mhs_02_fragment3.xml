@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Form_02.fragment.form_mhs_02_fragment3"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_squaredark"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="Semester V"
+                android:textColor="#FFF"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@+id/btnF2_tambahsmt5"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="Tambah"
+                android:textSize="15dp"
+                android:textColor="#FFF"
+                android:background="@drawable/rounded_squaredark"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/form_mhs_02_fragment3_list1"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:padding="10dp"
+                android:background="@drawable/rounded_sqrwht"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="IP Semester : "
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    />
+                <TextView
+                    android:id="@+id/TVF2_fragment3_ip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="IP Komulatif : "
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    />
+                <TextView
+                    android:id="@+id/TVF2_fragment3_ipk1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rounded_squaredark"
+                android:gravity="left"
+                android:padding="15dp"
+                android:text="EVALUASI"
+                android:textColor="#FFF"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/rounded_sqrwht"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jumlah SKS Lulus"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Minimal : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_parametersks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Realisasi : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_realisasisks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Evaluasi : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_evaluasisks"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/rounded_sqrwht"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Indeks Prestasi Komulatif"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Minimal : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_parameteripk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Realisasi : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_realisasiipk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Evaluasi : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_evaluasiipk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:padding="20dp"
+                android:background="@drawable/rounded_sqrwht"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catatan"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@color/colorPrimaryDark"
+                    />
+                <TextView
+                    android:id="@+id/catatansmt5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/catatan2smt5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <Button
+                android:id="@+id/btnF2_catatansmt5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
+                android:layout_gravity="right"
+                android:text="Beri Catatan"
+                android:textColor="#FFF"
+                android:background="@drawable/rounded_squaredark"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/rounded_squaredark"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rounded_squaredark"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="Semester VI"
+                android:textColor="#FFF"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@+id/btnF2_tambahsmt6"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="Tambah"
+                android:textSize="15dp"
+                android:textColor="#FFF"
+                android:background="@drawable/rounded_squaredark"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/form_mhs_02_fragment3_list2"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:padding="10dp"
+                android:background="@drawable/rounded_sqrwht"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="IP Semester : "
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    />
+                <TextView
+                    android:id="@+id/TVF2_fragment3_ip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="IP Komulatif : "
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="20dp"
+                    />
+                <TextView
+                    android:id="@+id/TVF2_fragment3_ipk2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rounded_squaredark"
+                android:gravity="left"
+                android:padding="15dp"
+                android:text="EVALUASI"
+                android:textColor="#FFF"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/rounded_sqrwht"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jumlah SKS Lulus"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Minimal : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_parametersks2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Realisasi : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_realisasisks2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Evaluasi : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_evaluasisks2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/rounded_sqrwht"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Indeks Prestasi Komulatif"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Minimal : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_parameteripk2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Realisasi : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_realisasiipk2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Evaluasi : "
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                    <TextView
+                        android:id="@+id/TVF2_fragment3_evaluasiipk2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="15dp"
+                        android:textColor="@color/darkgray"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:padding="20dp"
+                android:background="@drawable/rounded_sqrwht"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catatan"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@color/colorPrimaryDark"
+                    />
+                <TextView
+                    android:id="@+id/catatansmt6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/catatan2smt6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <Button
+                android:id="@+id/btnF2_catatansmt6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:padding="10dp"
+                android:layout_gravity="right"
+                android:text="Beri Catatan"
+                android:textColor="#FFF"
+                android:background="@drawable/rounded_squaredark"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>

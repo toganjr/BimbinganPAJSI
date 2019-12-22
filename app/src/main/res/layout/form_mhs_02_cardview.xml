@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_sqrwht"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_matkul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mata Kuliah 1 "
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle=""
+            android:singleLine="true"
+            />
+        <TextView
+            android:id="@+id/tv_sks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 sks"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

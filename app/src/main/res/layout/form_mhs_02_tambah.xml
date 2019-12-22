@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Form_Mhs_01_edit1"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tambah Mata Kuliah"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:padding="15dp"
+        android:textSize="20dp"
+        android:textColor="#FFF"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_squaredark"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="20dp"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        android:background="@drawable/shadow_whitebg"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mata Kuliah"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimaryDark"
+            />
+       <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+           android:id="@+id/Spinner_F2_MatkulList"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:scrollbarSize="50dp"
+           />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Target"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimaryDark"
+            />
+        <EditText
+            android:id="@+id/setTarget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/darkgray"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:src="@color/colorPrimaryDark"
+            android:layout_marginBottom="10dp"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="center"
+        android:padding="15dp"
+        android:text="SIMPAN"
+        android:textSize="20dp"
+        android:textColor="#FFF"
+        android:background="@drawable/shadow_darkbg"
+        />
+
+</LinearLayout>

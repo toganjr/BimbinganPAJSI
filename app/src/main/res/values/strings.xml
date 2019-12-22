@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Bimbingan PA SI</string>
+    <string name="form_02_tab_text_1">I</string>
+    <string name="form_02_tab_text_2">II</string>
+    <string name="form_02_tab_text_3">III</string>
+    <string name="form_02_tab_text_4">IV</string>
+    <string name="form_02_tab_text_5">Grafik</string>
+    <string name="form_04_tab_text_1">Catatan</string>
+    <string name="form_04_tab_text_2">IPK/SKS lulus</string>
+    <string name="form_04_tab_text_3">Grafik</string>
+    <string name="baik_sm1">&gt;= 18</string>
+</resources>
