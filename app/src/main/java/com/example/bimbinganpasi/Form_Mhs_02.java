@@ -1,5 +1,6 @@
 package com.example.bimbinganpasi;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,11 +17,15 @@ public class Form_Mhs_02 extends AppCompatActivity {
 
     private TabLayout tabs;
     private TextView catatan;
+    public static Activity Form_Mhs_02;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_mhs_02);
+
+        Form_Mhs_02 = this;
+
         form_mhs_02_SectionsPagerAdapter sectionsPagerAdapter = new form_mhs_02_SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);

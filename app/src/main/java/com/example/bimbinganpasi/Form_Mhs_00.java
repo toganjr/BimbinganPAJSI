@@ -83,9 +83,8 @@ public class Form_Mhs_00 extends AppCompatActivity {
 
         IVF0_mhs = (ImageView) findViewById(R.id.ImgMhs);
 
-        checkType();
-        F0_getBiodata();
-        F0_getPhoto();
+        checkUserType();
+
         loading = new ProgressDialog(this);
         loading.setMessage("Loading...");
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
@@ -119,9 +118,9 @@ public class Form_Mhs_00 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void F0_getBiodata(){
+    public void F0_getBiodata(String UserId){
             Call<UserDataResponse> userbiodatarequest = mApiService.userbiodatarequest(
-                    String.valueOf(mPrefs.getUserID()));
+                    UserId);
                 userbiodatarequest.enqueue(new Callback<UserDataResponse>() {
                     @Override
                     public void onResponse(Call<UserDataResponse> call, Response<UserDataResponse> response) {
@@ -186,9 +185,9 @@ public class Form_Mhs_00 extends AppCompatActivity {
                     });
                 }
 
-    public void F0_getPhoto(){
+    public void F0_getPhoto(String UserId){
         Call<UserDataResponse> getPhoto = mApiService.getImage(
-                    String.valueOf(mPrefs.getUserID()));
+                    UserId);
         getPhoto.enqueue(new Callback<UserDataResponse>() {
                 @Override
                 public void onResponse(Call<UserDataResponse> call, Response<UserDataResponse>response) {
@@ -261,10 +260,14 @@ public class Form_Mhs_00 extends AppCompatActivity {
         }
     }
 
-    public void checkType(){
-        if(mPrefs.getUserType().equalsIgnoreCase("dosen")){
+    public void checkUserType(){
+        if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+            F0_getBiodata(String.valueOf(mPrefs.getUserID()));
+            F0_getPhoto(String.valueOf(mPrefs.getUserID()));
+        } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
             Btn_F0_Edit.setVisibility(View.GONE);
+            F0_getBiodata(String.valueOf(mPrefs.getSelectedUserId()));
+            F0_getPhoto(String.valueOf(mPrefs.getSelectedUserId()));
         }
     }
-
-    }
+ }

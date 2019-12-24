@@ -1,6 +1,9 @@
 package com.example.bimbinganpasi;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,14 +15,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bimbinganpasi.Data.ListForm4Response;
 import com.example.bimbinganpasi.Data.List_Form4;
+import com.example.bimbinganpasi.Data.MessageResponse;
 import com.example.bimbinganpasi.Data.Porto_Mhs;
 import com.example.bimbinganpasi.Data.PortofolioMhsResponse;
 import com.example.bimbinganpasi.Form_03.DataNote;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +40,11 @@ public class Form_Mhs_03 extends AppCompatActivity {
     BaseAPIService mApiService;
     PreferencesHelper mPrefs;
     Context mContext;
+    public static Activity Form_Mhs_03;
 
     RecyclerView listview;
     ListAdapter mListadapter;
+    FloatingActionButton fab_add;
 
     int [] no_list;
     String [] kegiatan_list,keterangan_list,kategori_list,semester_list;
@@ -45,22 +54,34 @@ public class Form_Mhs_03 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_mhs_03);
 
+        Form_Mhs_03 = this;
+
         mApiService = UtilsApi.getClient().create(BaseAPIService.class); // meng-init yang ada di package apihelper
         mPrefs = ((BimbPA) getApplication()).getPrefs();
         mContext = this;
 
         listview = (RecyclerView)findViewById(R.id.form_mhs_03_list);
+        fab_add = (FloatingActionButton) findViewById(R.id.fab3_add);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listview.setLayoutManager(layoutManager);
 
-        initListView();
+        checkUserType();
+
+        fab_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(),Form_Mhs_03_tambah.class);
+                startActivity(i);
+            }
+        });
+
     }
 
-    public void initListView(){
+    public void initListView(String UserId){
         Call<PortofolioMhsResponse> getPortoMhs = mApiService.getPortoMhs(
-                mPrefs.getUserID()
+                UserId
         );
         getPortoMhs.enqueue(new Callback<PortofolioMhsResponse>() {
             @Override
@@ -105,6 +126,39 @@ public class Form_Mhs_03 extends AppCompatActivity {
             public void onFailure(Call<PortofolioMhsResponse> call, Throwable t) {
                 Toast.makeText(mContext, "Koneksi Jaringan Bermasalah", Toast.LENGTH_SHORT).show();
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
+            }
+        });
+    }
+
+    public void checkUserType(){
+        if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+            initListView(String.valueOf(mPrefs.getUserID()));
+
+        } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+            initListView(String.valueOf(mPrefs.getSelectedUserId()));
+            fab_add.hide();
+        }
+    }
+
+    public void deletePortofolio(int no_portofolio){
+        Call<MessageResponse> deletePortofolio = mApiService.deletePortofolio(
+                no_portofolio
+        );
+        deletePortofolio.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(mContext, "Portofolio telah dihapus", Toast.LENGTH_SHORT).show();
+                    finish();
+                    Intent i = new Intent(getBaseContext(),Form_Mhs_03.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(mContext, "Gagal menghapus Portofolio", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
+                Toast.makeText(mContext, "Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -161,6 +215,23 @@ public class Form_Mhs_03 extends AppCompatActivity {
                 @Override
                 public void onClick(View v)
                 {
+                    new AlertDialog.Builder(mContext)
+                            .setTitle("Delete Portofolio")
+                            .setMessage("Are you sure you want to delete this portofolio?")
+
+                            // Specifying a listener allows you to take an action before dismissing the dialog.
+                            // The dialog is automatically dismissed when a dialog button is clicked.
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Continue with delete operation
+                                    deletePortofolio(dataList.get(position).getNo());
+                                }
+                            })
+
+                            // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton(android.R.string.no, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
                 }
             });
         }
@@ -171,4 +242,6 @@ public class Form_Mhs_03 extends AppCompatActivity {
             return dataList.size();
         }
     }
+
+
 }

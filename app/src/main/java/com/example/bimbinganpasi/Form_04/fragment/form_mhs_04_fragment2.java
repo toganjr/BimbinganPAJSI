@@ -1,6 +1,7 @@
 package com.example.bimbinganpasi.Form_04.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,15 +67,15 @@ public class form_mhs_04_fragment2 extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listview.setLayoutManager(layoutManager);
 
-        initListView();
+        checkUserType();
 
         // Inflate the layout for this fragment
         return v;
     }
 
-    public void initListView(){
+    public void initListView(String UserId){
         Call<ListForm4Response> getListForm4 = mApiService.getListForm4(
-                mPrefs.getUserID()
+                UserId
         );
         getListForm4.enqueue(new Callback<ListForm4Response>() {
             @Override
@@ -94,7 +95,7 @@ public class form_mhs_04_fragment2 extends Fragment {
                         ipk_kat[i] = list.get(i).getKategoriIpk();
                         sks_cap[i] = String.valueOf(list.get(i).getSksMhs());
                         sks_kat[i] = list.get(i).getKategoriSks();
-                        //catatan[i] = list.get(i).get();
+                        catatan[i] = list.get(i).getCatatan();
                         semester[i]  = list.get(i).getSemester();
                     }
 
@@ -108,6 +109,7 @@ public class form_mhs_04_fragment2 extends Fragment {
                                                 ipk_kat[i],
                                                 sks_cap[i],
                                                 sks_kat[i],
+                                                catatan[i],
                                                 semester[i]
                                         ));
                     }
@@ -125,6 +127,15 @@ public class form_mhs_04_fragment2 extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+    }
+
+    public void checkUserType(){
+        if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+            initListView(String.valueOf(mPrefs.getUserID()));
+
+        } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+            initListView(String.valueOf(mPrefs.getSelectedUserId()));
+        }
     }
 
     public class ListAdapter extends RecyclerView.Adapter<form_mhs_04_fragment2.ListAdapter.ViewHolder>
@@ -169,6 +180,12 @@ public class form_mhs_04_fragment2 extends Fragment {
         @Override
         public void onBindViewHolder(form_mhs_04_fragment2.ListAdapter.ViewHolder holder, final int position)
         {
+            if(dataList.get(position).getSkskat().equalsIgnoreCase("kritis") || dataList.get(position).getSkskat().equalsIgnoreCase("kurang")){
+                holder.textViewSKSkat.setTextColor(Color.rgb(255,0,0));
+            }
+            if(dataList.get(position).getIpkkat().equalsIgnoreCase("kritis") || dataList.get(position).getIpkkat().equalsIgnoreCase("kurang")){
+                holder.textViewIPKkat.setTextColor(Color.rgb(255,0,0));
+            }
             holder.textViewIPKkat.setText(dataList.get(position).getIpkkat());
             holder.textViewIPKcap.setText("IPK : "+dataList.get(position).getIpkcap());
             holder.textViewSKSkat.setText(dataList.get(position).getSkskat());

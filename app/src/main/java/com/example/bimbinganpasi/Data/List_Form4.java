@@ -20,6 +20,9 @@ public class List_Form4 {
     @SerializedName("semester")
     @Expose
     private String semester;
+    @SerializedName("catatan")
+    @Expose
+    private String catatan;
 
     public String getKategoriIpk() {
         return kategoriIpk;
@@ -59,6 +62,14 @@ public class List_Form4 {
 
     public void setSemester(String semester) {
         this.semester = semester;
+    }
+
+    public String getCatatan() {
+        return catatan;
+    }
+
+    public void setCatatan(String catatan) {
+        this.catatan = catatan;
     }
 
 }

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bimbinganpasi.BaseAPIService;
 import com.example.bimbinganpasi.BimbPA;
+import com.example.bimbinganpasi.Data.CatatanPAResponse;
 import com.example.bimbinganpasi.Data.CatatanResponse;
 import com.example.bimbinganpasi.Data.EvalMhsResponse;
 import com.example.bimbinganpasi.Data.EvalParaResponse;
@@ -25,6 +26,7 @@ import com.example.bimbinganpasi.Data.IPKMhsResponse;
 import com.example.bimbinganpasi.Data.IPKResponse;
 import com.example.bimbinganpasi.Data.MatkulMhsResponse;
 import com.example.bimbinganpasi.Data.Matkul_Mhs;
+import com.example.bimbinganpasi.Form_Mhs_02_tambahcatatan;
 import com.example.bimbinganpasi.PreferencesHelper;
 import com.example.bimbinganpasi.Form_02.adapter.DataNote;
 import com.example.bimbinganpasi.Form_Mhs_02_Detail;
@@ -48,7 +50,7 @@ public class form_mhs_02_fragment4 extends Fragment {
     BaseAPIService mApiService;
     PreferencesHelper mPrefs;
 
-    Button btnF2_semester7,btnF2_semester8;
+    Button btnF2_semester7,btnF2_semester8,btnF2_tmbhcatatan1,btnF2_tmbhcatatan2;
     RecyclerView listview1,listview2;
     ListAdapter mListadapter;
     ListAdapter2 mListadapter2;
@@ -57,7 +59,7 @@ public class form_mhs_02_fragment4 extends Fragment {
 
     String [] no_list,matkul_list,sks_list,prasyarat_list,target_list,realisasi_list,nxk_list;
     String [] no_list2,matkul_list2,sks_list2,prasyarat_list2,target_list2,realisasi_list2,nxk_list2;
-    ViewGroup btn_smt7,btn_smt8;
+    ViewGroup btn_smt7,btn_smt8,btn_ctt1,btn_ctt2;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -98,11 +100,15 @@ public class form_mhs_02_fragment4 extends Fragment {
         tv_catataneven2 = (TextView) v.findViewById(R.id.catatan2smt8);
         btnF2_semester7 = (Button) v.findViewById(R.id.btnF2_tambahsmt7);
         btnF2_semester8 = (Button) v.findViewById(R.id.btnF2_tambahsmt8);
+        btnF2_tmbhcatatan1 = (Button) v.findViewById(R.id.btnF2_catatansmt7);
+        btnF2_tmbhcatatan2 = (Button) v.findViewById(R.id.btnF2_catatansmt8);
         listview1 =(RecyclerView) v.findViewById(R.id.form_mhs_02_fragment4_list1);
         listview2 =(RecyclerView) v.findViewById(R.id.form_mhs_02_fragment4_list2);
 
         btn_smt7 = (ViewGroup) btnF2_semester7.getParent();
         btn_smt8 = (ViewGroup) btnF2_semester8.getParent();
+        btn_ctt1 = (ViewGroup) btnF2_tmbhcatatan1.getParent();
+        btn_ctt2 = (ViewGroup) btnF2_tmbhcatatan2.getParent();
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -111,17 +117,8 @@ public class form_mhs_02_fragment4 extends Fragment {
         final LinearLayoutManager layoutManager2 = new LinearLayoutManager(getActivity());
         layoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
         listview2.setLayoutManager(layoutManager2);
-        initListView1();
-        initListView2();
-        getIPKSemester(7);
-        getIPKSemester(8);
-        getEvalMhs();
-        getEvalMhs2();
-        getParameter();
-        getParameter2();
-        checkUserType(mPrefs.getUserType());
-        getCatatanodd();
-        getCatatanEven();
+
+        checkUserType();
 
         btnF2_semester7.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +133,23 @@ public class form_mhs_02_fragment4 extends Fragment {
                 getSemesterEven();
             }
         });
+        btnF2_tmbhcatatan1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity().getBaseContext(),
+                        Form_Mhs_02_tambahcatatan.class);
+                getActivity().startActivity(i);
+            }
+        });
+
+        btnF2_tmbhcatatan2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity().getBaseContext(),
+                        Form_Mhs_02_tambahcatatan.class);
+                getActivity().startActivity(i);
+            }
+        });
 
         // Inflate the layout for this fragment
         return v;
@@ -145,20 +159,20 @@ public class form_mhs_02_fragment4 extends Fragment {
     {
         Intent i = new Intent(getActivity().getBaseContext(),
                 Form_Mhs_02_tambah.class);
-        i.putExtra("semester_min", 7);
+ //       i.putExtra("semester_min", 7);
         getActivity().startActivity(i);
     }
     private void getSemesterEven()
     {
         Intent i = new Intent(getActivity().getBaseContext(),
                 Form_Mhs_02_tambah.class);
-        i.putExtra("semester_min", 8);
+//        i.putExtra("semester_min", 8);
         getActivity().startActivity(i);
     }
 
-    public void initListView1(){
+    public void initListView1(String UserId){
         Call<MatkulMhsResponse> getMatkulMhs = mApiService.getMatkulMhs(
-                mPrefs.getUserID(),
+                UserId,
                 7
         );
         getMatkulMhs.enqueue(new Callback<MatkulMhsResponse>() {
@@ -208,9 +222,9 @@ public class form_mhs_02_fragment4 extends Fragment {
         });
     }
 
-    public void initListView2(){
+    public void initListView2(String UserId){
         Call<MatkulMhsResponse> getMatkulMhs = mApiService.getMatkulMhs(
-                mPrefs.getUserID(),
+                UserId,
                 8
         );
         getMatkulMhs.enqueue(new Callback<MatkulMhsResponse>() {
@@ -260,9 +274,9 @@ public class form_mhs_02_fragment4 extends Fragment {
         });
     }
 
-    public void getIPKSemester(int semester){
+    public void getIPKSemester(String UserId,int semester){
         Call<IPKResponse> getIPKSemester = mApiService.getIPKMhs(
-                mPrefs.getUserID(),
+                UserId,
                 semester
         );
         getIPKSemester.enqueue(new Callback<IPKResponse>() {
@@ -293,9 +307,9 @@ public class form_mhs_02_fragment4 extends Fragment {
         });
     }
 
-    public void getEvalMhs(){
+    public void getEvalMhs(String UserId){
         Call<EvalMhsResponse> getEvalMhs = mApiService.getEvalMhs(
-                mPrefs.getUserID(),
+                UserId,
                 7
         );
         getEvalMhs.enqueue(new Callback<EvalMhsResponse>() {
@@ -333,9 +347,9 @@ public class form_mhs_02_fragment4 extends Fragment {
         });
     }
 
-    public void getEvalMhs2(){
+    public void getEvalMhs2(String UserId){
         Call<EvalMhsResponse> getEvalMhs = mApiService.getEvalMhs(
-                mPrefs.getUserID(),
+                UserId,
                 8
         );
         getEvalMhs.enqueue(new Callback<EvalMhsResponse>() {
@@ -419,9 +433,9 @@ public class form_mhs_02_fragment4 extends Fragment {
         });
     }
 
-    public void getCatatanodd(){
+    public void getCatatanodd(String UserId){
         Call<CatatanResponse> getParameter = mApiService.getCatatanForm2(
-                mPrefs.getUserID(),
+                UserId,
                 7
         );
         getParameter.enqueue(new Callback<CatatanResponse>() {
@@ -446,6 +460,9 @@ public class form_mhs_02_fragment4 extends Fragment {
                     if (lulus != "null"){
                         catatan += lulus;}
                     tv_catatanodd.setText(catatan);
+                    if (tv_catatanodd.getText().toString().equals("")){
+                        tv_catatanodd.setVisibility(View.GONE);
+                    }
                 }
             }
             @Override
@@ -455,9 +472,9 @@ public class form_mhs_02_fragment4 extends Fragment {
         });
     }
 
-    public void getCatatanEven(){
+    public void getCatatanEven(String UserId){
         Call<CatatanResponse> getParameter = mApiService.getCatatanForm2(
-                mPrefs.getUserID(),
+                UserId,
                 8
         );
         getParameter.enqueue(new Callback<CatatanResponse>() {
@@ -482,6 +499,9 @@ public class form_mhs_02_fragment4 extends Fragment {
                     if (lulus != "null"){
                         catatan += lulus;}
                     tv_catataneven.setText(catatan);
+                    if (tv_catataneven.getText().toString().equals("")){
+                        tv_catataneven.setVisibility(View.GONE);
+                    }
                 }
             }
             @Override
@@ -491,12 +511,88 @@ public class form_mhs_02_fragment4 extends Fragment {
         });
     }
 
-    public void checkUserType(String typeUser){
+    public void getCatatanPAOdd(String UserId){
+        Call<CatatanPAResponse> getCatatanPA = mApiService.getCatatanPA(
+                UserId,
+                7
+        );
+        getCatatanPA.enqueue(new Callback<CatatanPAResponse>() {
+            @Override
+            public void onResponse(Call<CatatanPAResponse> call, Response<CatatanPAResponse> response) {
+                boolean iserror_ = response.body().getError();
+                if (iserror_ == false) {
+                    String catatanPA = String.valueOf(response.body().getCatatan());
+                    tv_catatanodd2.setText(catatanPA);
+                }
+            }
+            @Override
+            public void onFailure(Call<CatatanPAResponse> call, Throwable t) {
+                Log.e("debug", "onFailure: ERROR > " + t.toString());
+            }
+        });
+    }
 
-        if(typeUser.equals("dosen")){
+    public void getCatatanPAEven(String UserId){
+        Call<CatatanPAResponse> getCatatanPA = mApiService.getCatatanPA(
+                UserId,
+                8
+        );
+        getCatatanPA.enqueue(new Callback<CatatanPAResponse>() {
+            @Override
+            public void onResponse(Call<CatatanPAResponse> call, Response<CatatanPAResponse> response) {
+                boolean iserror_ = response.body().getError();
+                if (iserror_ == false) {
+                    String catatanPA = String.valueOf(response.body().getCatatan());
+                    tv_catataneven2.setText(catatanPA);
+                }
+            }
+            @Override
+            public void onFailure(Call<CatatanPAResponse> call, Throwable t) {
+                Log.e("debug", "onFailure: ERROR > " + t.toString());
+            }
+        });
+    }
+
+    public void checkUserType(){
+
+        if(mPrefs.getUserType().equals("dosen")){
             btn_smt7.removeView(btnF2_semester7);
             btn_smt8.removeView(btnF2_semester8);
-        } else if (typeUser.equals("mahasiswa")){
+            initListView1(String.valueOf(mPrefs.getSelectedUserId()));
+            initListView2(String.valueOf(mPrefs.getSelectedUserId()));
+            getIPKSemester(String.valueOf(mPrefs.getSelectedUserId()),7);
+            getIPKSemester(String.valueOf(mPrefs.getSelectedUserId()),8);
+            getEvalMhs(String.valueOf(mPrefs.getSelectedUserId()));
+            getEvalMhs2(String.valueOf(mPrefs.getSelectedUserId()));
+            getParameter();
+            getParameter2();
+            getCatatanodd(String.valueOf(mPrefs.getSelectedUserId()));
+            getCatatanEven(String.valueOf(mPrefs.getSelectedUserId()));
+            getCatatanPAOdd(String.valueOf(mPrefs.getSelectedUserId()));
+            getCatatanPAEven(String.valueOf(mPrefs.getSelectedUserId()));
+            if(Integer.valueOf(mPrefs.getUserSmt()) == 7) {
+                btn_ctt2.removeView(btnF2_tmbhcatatan2);
+            } else if (Integer.valueOf(mPrefs.getUserSmt()) == 8){
+                btn_ctt1.removeView(btnF2_tmbhcatatan1);
+            } else {
+                btn_ctt1.removeView(btnF2_tmbhcatatan1);
+                btn_ctt2.removeView(btnF2_tmbhcatatan2);
+            }
+        } else if (mPrefs.getUserType().equals("mahasiswa")){
+            btn_ctt1.removeView(btnF2_tmbhcatatan1);
+            btn_ctt2.removeView(btnF2_tmbhcatatan2);
+            initListView1(String.valueOf(mPrefs.getUserID()));
+            initListView2(String.valueOf(mPrefs.getUserID()));
+            getIPKSemester(String.valueOf(mPrefs.getUserID()),7);
+            getIPKSemester(String.valueOf(mPrefs.getUserID()),8);
+            getEvalMhs(String.valueOf(mPrefs.getUserID()));
+            getEvalMhs2(String.valueOf(mPrefs.getUserID()));
+            getParameter();
+            getParameter2();
+            getCatatanodd(String.valueOf(mPrefs.getUserID()));
+            getCatatanEven(String.valueOf(mPrefs.getUserID()));
+            getCatatanPAOdd(String.valueOf(mPrefs.getUserID()));
+            getCatatanPAEven(String.valueOf(mPrefs.getUserID()));
             if(Integer.valueOf(mPrefs.getUserSmt()) == 7) {
                 btn_smt8.removeView(btnF2_semester8);
             } else if (Integer.valueOf(mPrefs.getUserSmt()) == 8){

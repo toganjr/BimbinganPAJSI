@@ -1,6 +1,10 @@
 package com.example.bimbinganpasi;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bimbinganpasi.Data.Image;
 import com.example.bimbinganpasi.Data.LogbookMhsResponse;
 import com.example.bimbinganpasi.Data.Logbook_Mhs;
+import com.example.bimbinganpasi.Data.MessageResponse;
 import com.example.bimbinganpasi.Data.Porto_Mhs;
 import com.example.bimbinganpasi.Data.PortofolioMhsResponse;
 import com.example.bimbinganpasi.Form_05.DataNote;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +42,8 @@ public class Form_Mhs_05 extends AppCompatActivity {
 
     RecyclerView listview;
     ListAdapter mListadapter;
+    FloatingActionButton fab_add;
+    public static Activity Form_Mhs_05;
 
     int [] no_list;
     String [] materi_list,tanggal_list,semester_list;
@@ -48,20 +56,30 @@ public class Form_Mhs_05 extends AppCompatActivity {
         mApiService = UtilsApi.getClient().create(BaseAPIService.class); // meng-init yang ada di package apihelper
         mPrefs = ((BimbPA) getApplication()).getPrefs();
         mContext = this;
+        Form_Mhs_05 = this;
 
+        fab_add = (FloatingActionButton) findViewById(R.id.fab5_add);
         listview = (RecyclerView)findViewById(R.id.form_mhs_05_list);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listview.setLayoutManager(layoutManager);
 
-        initListView();
+        checkUserType();
+
+        fab_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(),Form_Mhs_05_tambah.class);
+                startActivity(i);
+            }
+        });
 
     }
 
-    public void initListView(){
+    public void initListView(String UserId){
         Call<LogbookMhsResponse> getLogbookMhs = mApiService.getLogbookMhs(
-                mPrefs.getUserID()
+                String.valueOf(UserId)
         );
         getLogbookMhs.enqueue(new Callback<LogbookMhsResponse>() {
             @Override
@@ -106,6 +124,40 @@ public class Form_Mhs_05 extends AppCompatActivity {
             }
         });
     }
+
+    public void checkUserType(){
+        if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+            initListView(String.valueOf(mPrefs.getUserID()));
+            fab_add.hide();
+
+        } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+            initListView(String.valueOf(mPrefs.getSelectedUserId()));
+        }
+    }
+
+    public void deleteLogbook(int no_logbook){
+        Call<MessageResponse> deleteLogbook = mApiService.deleteLogbook(
+                no_logbook
+        );
+        deleteLogbook.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(mContext, "Logbook telah dihapus", Toast.LENGTH_SHORT).show();
+                    finish();
+                    Intent i = new Intent(getBaseContext(),Form_Mhs_05.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(mContext, "Gagal menghapus Portofolio", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
+                Toast.makeText(mContext, "Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     {
@@ -156,16 +208,25 @@ public class Form_Mhs_05 extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(mContext, "Kamu memilih mata kuliah ", Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(mContext)
+                        .setTitle("Delete Logbook")
+                        .setMessage("Are you sure you want to delete this Logbook?")
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+                                deleteLogbook(dataList.get(position).getNo());
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
         });
-            holder.itemView.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                }
-            });
         }
 
         @Override

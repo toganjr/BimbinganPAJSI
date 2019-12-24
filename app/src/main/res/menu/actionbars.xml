@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
     <item
-        android:id="@+id/chpassword"  app:showAsAction="never" android:title="Change Password">
+        android:id="@+id/chgpassword"  app:showAsAction="never" android:title="Change Password">
     </item>
     <item
         android:id="@+id/exit"  app:showAsAction="never" android:title="Logout">

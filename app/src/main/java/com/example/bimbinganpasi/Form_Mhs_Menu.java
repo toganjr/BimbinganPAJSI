@@ -11,20 +11,31 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.bimbinganpasi.Data.Mahasiswa;
+import com.example.bimbinganpasi.Data.MhsBimbinganResponse;
 import com.example.bimbinganpasi.Data.UserDataResponse;
+import com.example.bimbinganpasi.Form_Menu.Adapter.DataNote;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Form_Mhs_Menu extends AppCompatActivity {
-    private TextView TV_nama,TV_no_induk;
+    private TextView TV_nama,TV_no_induk,TV_peringatan,TV_peringatandosen;
     private Button Btn_F0,Btn_F1,Btn_F2,Btn_F3,Btn_F4,Btn_F5;
     private boolean isLogin;
     PreferencesHelper mPrefs;
     BaseAPIService mApiService;
     Context mContext;
+    Menu myMenu;
+
+    int no_id,semester;
+    String nama,nim,kat_sks,kat_ipk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +46,8 @@ public class Form_Mhs_Menu extends AppCompatActivity {
 
             TV_nama = (TextView) findViewById(R.id.NamaUser);
             TV_no_induk = (TextView) findViewById(R.id.NIUser);
+            TV_peringatan = (TextView) findViewById(R.id.peringatan_F0);
+            TV_peringatandosen = (TextView) findViewById(R.id.peringatandosen_F0);
 
             Btn_F0 = (Button) findViewById(R.id.Btn_F0);
             Btn_F1 = (Button) findViewById(R.id.Btn_F1);
@@ -90,7 +103,7 @@ public class Form_Mhs_Menu extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         mApiService = UtilsApi.getClient().create(BaseAPIService.class);
-        requestData();
+        checkUserType();
     }
 
     public void MhsForm00(){
@@ -122,6 +135,10 @@ public class Form_Mhs_Menu extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.actionbars, menu);
+        if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+            menu.findItem( R.id.chgpassword ).setVisible( false );
+            menu.findItem( R.id.exit ).setVisible( false );
+        }
         return true;
     }
 
@@ -134,13 +151,17 @@ public class Form_Mhs_Menu extends AppCompatActivity {
             startActivity(intent);
             finish();
             return(true);
+        case R.id.chgpassword:
+            Intent intent2 = new Intent(this, Form_Change_Password.class);
+            startActivity(intent2);
+            return(true);
     }
         return(super.onOptionsItemSelected(item));
     }
 
-    public void requestData(){
+    public void requestData(String userID){
         Call<UserDataResponse> loggedinuserrequest = mApiService.loggedinuserrequest(
-                String.valueOf(mPrefs.getUserID()));
+                userID);
         loggedinuserrequest.enqueue(new Callback<UserDataResponse>() {
             @Override
             public void onResponse(Call<UserDataResponse> call, Response<UserDataResponse> response) {
@@ -163,6 +184,48 @@ public class Form_Mhs_Menu extends AppCompatActivity {
                 });
     }
 
+    public void checkMhsKat(String UserId){
+        Call<MhsBimbinganResponse> checkMhsKat = mApiService.checkMhsKat(
+                UserId
+        );
+        checkMhsKat.enqueue(new Callback<MhsBimbinganResponse>() {
+            @Override
+            public void onResponse(Call<MhsBimbinganResponse> call, Response<MhsBimbinganResponse> response) {
+                boolean iserror_ = response.body().getError();
+                if (iserror_ == false) {
+                    List<Mahasiswa> list = new ArrayList<>();
+                    list = response.body().getMahasiswa();
+                    kat_sks = list.get(0).getKategoriSks();
+                    kat_ipk = list.get(0).getKategoriIpk();
+                    if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")) {
+                            if("kritis".equalsIgnoreCase(kat_sks) || "kurang".equalsIgnoreCase(kat_sks) || "kritis".equalsIgnoreCase(kat_ipk) || "kurang".equalsIgnoreCase(kat_ipk)){
+                                TV_peringatan.setVisibility(View.VISIBLE);
+                        }
+                    } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")) {
+                            if("kritis".equalsIgnoreCase(kat_sks) || "kurang".equalsIgnoreCase(kat_sks) || "kritis".equalsIgnoreCase(kat_ipk) || "kurang".equalsIgnoreCase(kat_ipk)){
+                                TV_peringatandosen.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<MhsBimbinganResponse> call, Throwable t) {
+                Toast.makeText(mContext, "Koneksi Jaringan Bermasalah", Toast.LENGTH_SHORT).show();
+                Log.e("debug", "onFailure: ERROR > " + t.toString());
+            }
+        });
+    }
+
+
+    public void checkUserType(){
+        if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+            requestData(String.valueOf(mPrefs.getUserID()));
+            checkMhsKat(String.valueOf(mPrefs.getUserID()));
+        } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+            requestData(String.valueOf(mPrefs.getSelectedUserId()));
+            checkMhsKat(String.valueOf(mPrefs.getSelectedUserId()));
+        }
+    }
 
 
 }

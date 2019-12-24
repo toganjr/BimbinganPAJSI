@@ -52,19 +52,22 @@ public class Form_Mhs_02_tambah extends AppCompatActivity {
         mContext = this;
         mApiService = UtilsApi.getClient().create(BaseAPIService.class);
         mPrefs = ((BimbPA) getApplication()).getPrefs();
-        receiveData();
-
-        target = setTarget.getText().toString();
+        //receiveData();
 
         btnSave.setOnClickListener(new View.OnClickListener(){
                                         @Override
                                         public void onClick(View view) {
-                                            tambahMatkul(mPrefs.getUserID(),no_matkul,target,semester_min);
+                                            if (setTarget.getText().toString().equals("")){
+                                                Toast.makeText(mContext, "Masukkan Target Nilai", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Form_Mhs_02.Form_Mhs_02.finish();
+                                                tambahMatkul(mPrefs.getUserID(), no_matkul, setTarget.getText().toString(), Integer.parseInt(mPrefs.getUserSmt()));
+                                            }
                                         }
                                     }
         );
 
-        initSpinnerMatkulList(semester_min);
+        initSpinnerMatkulList(Integer.parseInt(mPrefs.getUserSmt()));
         spinnerMatkulList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -111,12 +114,12 @@ public class Form_Mhs_02_tambah extends AppCompatActivity {
         });
     }
 
-    private void receiveData()
-    {
-        //RECEIVE DATA VIA INTENT
-        Intent i = getIntent();
-        semester_min = i.getIntExtra("semester_min",0);
-    }
+//    private void receiveData()
+//    {
+//        //RECEIVE DATA VIA INTENT
+//        Intent i = getIntent();
+//        semester_min = i.getIntExtra("semester_min",0);
+//    }
 
     public void tambahMatkul(int no_user_id, int no_matkul, String target, int semester){
         Call<tambahMatkulResponse> tambahMatkul = mApiService.tambahMatkulMhs(

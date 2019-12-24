@@ -1,14 +1,17 @@
 package com.example.bimbinganpasi;
 
 import com.example.bimbinganpasi.Data.CatatanEvalResponse;
+import com.example.bimbinganpasi.Data.CatatanPAResponse;
 import com.example.bimbinganpasi.Data.CatatanResponse;
 import com.example.bimbinganpasi.Data.EvalMhsResponse;
 import com.example.bimbinganpasi.Data.EvalParaResponse;
 import com.example.bimbinganpasi.Data.IPKResponse;
+import com.example.bimbinganpasi.Data.IpListResponse;
 import com.example.bimbinganpasi.Data.ListForm4Response;
 import com.example.bimbinganpasi.Data.LogbookMhsResponse;
 import com.example.bimbinganpasi.Data.MatkulList;
 import com.example.bimbinganpasi.Data.MatkulMhsResponse;
+import com.example.bimbinganpasi.Data.MessageResponse;
 import com.example.bimbinganpasi.Data.MhsBimbinganResponse;
 import com.example.bimbinganpasi.Data.MilestoneDataResponse;
 import com.example.bimbinganpasi.Data.PortofolioMhsResponse;
@@ -47,6 +50,17 @@ public interface BaseAPIService {
     @FormUrlEncoded
     @POST("include/getMhsBimbingan.php")
     Call<MhsBimbinganResponse> mhsBimbinganRequest(@Field("no") String no);
+
+    @FormUrlEncoded
+    @POST("include/checkMhsKat.php")
+    Call<MhsBimbinganResponse> checkMhsKat(@Field("no") String no);
+
+    @FormUrlEncoded
+    @POST("include/changePassword.php")
+    Call<MessageResponse> changePassword(@Field("no") String no,
+                                         @Field("password") String password,
+                                         @Field("newpassword") String newpassword
+    );
 
     @FormUrlEncoded
     @POST("include/get_userbiodata.php")
@@ -162,6 +176,12 @@ public interface BaseAPIService {
     Call<MatkulList> getMatkulList(@Field("semester") int semester);
 
     @FormUrlEncoded
+    @POST("include/tambahCatatanDosenPA.php")
+    Call<MessageResponse> tambahCatatanPA(@Field("no") int no,
+                                        @Field("catatan") String catatan,
+                                        @Field("semester") String semester);
+
+    @FormUrlEncoded
     @POST("include/tambahMatkul.php")
     Call<tambahMatkulResponse> tambahMatkulMhs(@Field("no") int no,
                                                @Field("no_matkul") int no_matkul,
@@ -169,18 +189,53 @@ public interface BaseAPIService {
                                                @Field("semester") int semester);
 
     @FormUrlEncoded
+    @POST("include/tambahPortofolio.php")
+    Call<MessageResponse> tambahPortofolio(@Field("no") int no,
+                                               @Field("kegiatan") String kegiatan,
+                                               @Field("keterangan") String keterangan,
+                                               @Field("kategori") String kategori,
+                                               @Field("semester") String semester);
+
+    @FormUrlEncoded
+    @POST("include/tambahLogbook.php")
+    Call<MessageResponse> tambahLogbook(@Field("no") int no,
+                                           @Field("materi_konsul") String materi_konsul,
+                                           @Field("tanggal_konsul") String tanggal_konsul,
+                                           @Field("semester") String semester);
+
+    @FormUrlEncoded
+    @POST("include/deleteMatkul.php")
+    Call<MessageResponse> deleteMatkulMhs(@Field("no_matkul") int no);
+
+    @FormUrlEncoded
+    @POST("include/deletePortofolio.php")
+    Call<MessageResponse> deletePortofolio(@Field("no_portofolio") int no);
+
+    @FormUrlEncoded
+    @POST("include/deleteLogbook.php")
+    Call<MessageResponse> deleteLogbook(@Field("no_logbook") int no);
+
+    @FormUrlEncoded
     @POST("include/getMatkulMhs.php")
-    Call<MatkulMhsResponse> getMatkulMhs(@Field("no") int no,
+    Call<MatkulMhsResponse> getMatkulMhs(@Field("no") String no,
                                          @Field("semester") int semester);
 
     @FormUrlEncoded
     @POST("include/getIPKMhs.php")
-    Call<IPKResponse> getIPKMhs(@Field("no") int no,
+    Call<IPKResponse> getIPKMhs(@Field("no") String no,
                                 @Field("semester") int semester);
 
     @FormUrlEncoded
+    @POST("include/getIPList.php")
+    Call<IpListResponse> getIPList(@Field("no") String no);
+
+    @FormUrlEncoded
+    @POST("include/getIPKList.php")
+    Call<IpListResponse> getIPKList(@Field("no") String no);
+
+    @FormUrlEncoded
     @POST("include/getEvalMhs.php")
-    Call<EvalMhsResponse> getEvalMhs(@Field("no") int no,
+    Call<EvalMhsResponse> getEvalMhs(@Field("no") String no,
                                      @Field("semester") int semester);
 
     @FormUrlEncoded
@@ -193,20 +248,24 @@ public interface BaseAPIService {
 
     @FormUrlEncoded
     @POST("include/getCatatanForm2.php")
-    Call<CatatanResponse> getCatatanForm2(@Field("no") int no,
+    Call<CatatanResponse> getCatatanForm2(@Field("no") String no,
                                             @Field("semester") int semester);
+    @FormUrlEncoded
+    @POST("include/getCatatanPA.php")
+    Call<CatatanPAResponse> getCatatanPA(@Field("no") String no,
+                                         @Field("semester") int semester);
 
     @FormUrlEncoded
     @POST("include/getListform4.php")
-    Call<ListForm4Response> getListForm4(@Field("no") int no);
+    Call<ListForm4Response> getListForm4(@Field("no") String no);
 
     @FormUrlEncoded
     @POST("include/getPortoMhs.php")
-    Call<PortofolioMhsResponse> getPortoMhs(@Field("no") int no);
+    Call<PortofolioMhsResponse> getPortoMhs(@Field("no") String no);
 
     @FormUrlEncoded
     @POST("include/getLogbookMhs.php")
-    Call<LogbookMhsResponse> getLogbookMhs(@Field("no") int no);
+    Call<LogbookMhsResponse> getLogbookMhs(@Field("no") String no);
 
     // Fungsi ini untuk memanggil API http://10.0.2.2/mahasiswa/register.php
   // @FormUrlEncoded

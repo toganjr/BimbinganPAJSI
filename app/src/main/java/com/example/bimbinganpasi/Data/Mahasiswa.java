@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Mahasiswa {
 
+    @SerializedName("no_id")
+    @Expose
+    private Integer noId;
     @SerializedName("nama_mhs")
     @Expose
     private String namaMhs;
@@ -26,6 +29,14 @@ public class Mahasiswa {
     @SerializedName("sks_mhs")
     @Expose
     private String sksMhs;
+
+    public Integer getNoId() {
+        return noId;
+    }
+
+    public void setNoId(Integer noId) {
+        this.noId = noId;
+    }
 
     public String getNamaMhs() {
         return namaMhs;

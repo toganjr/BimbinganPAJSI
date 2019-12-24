@@ -80,7 +80,7 @@
                 />
             <EditText
                 android:id="@+id/setEmail"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -100,7 +100,7 @@
                 />
             <EditText
                 android:id="@+id/setEmail2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -120,7 +120,7 @@
                 />
             <EditText
                 android:id="@+id/setMobilephone"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -140,7 +140,7 @@
                 />
             <EditText
                 android:id="@+id/setMobilephone2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -160,7 +160,7 @@
                 />
             <EditText
                 android:id="@+id/setAlamatmlg"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -180,7 +180,7 @@
                 />
             <EditText
                 android:id="@+id/setAlamatasal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -200,7 +200,7 @@
                 />
             <EditText
                 android:id="@+id/setSmaasal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -220,7 +220,7 @@
                 />
             <EditText
                 android:id="@+id/setHobby"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -240,7 +240,7 @@
                 />
             <EditText
                 android:id="@+id/setEkskul"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -286,7 +286,7 @@
                 />
             <EditText
                 android:id="@+id/setNamaortu"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -306,7 +306,7 @@
                 />
             <EditText
                 android:id="@+id/setAlamatortu"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -326,7 +326,7 @@
                 />
             <EditText
                 android:id="@+id/setEmailortu"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -346,7 +346,7 @@
                 />
             <EditText
                 android:id="@+id/setMobilephoneortu"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -391,7 +391,7 @@
                 />
             <EditText
                 android:id="@+id/setFbid"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -412,7 +412,7 @@
                 />
             <EditText
                 android:id="@+id/setIgid"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -433,7 +433,7 @@
                 />
             <EditText
                 android:id="@+id/setLineid"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"
@@ -453,7 +453,7 @@
                 />
             <EditText
                 android:id="@+id/setNumbwa"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="@color/darkgray"

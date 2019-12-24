@@ -71,12 +71,7 @@ public class Form_Mhs_01 extends AppCompatActivity {
         Btn_F1_Edit2 = (Button) findViewById(R.id.Btn_F1_Edit2);
         Btn_F1_Edit3 = (Button) findViewById(R.id.Btn_F1_Edit3);
 
-        checkType();
-        F1_getPhotoPkl();
-        F1_getPhotoSkripsi();
-        F1_getPhotoWisuda();
-        requestMilestoneBio();
-        requestMilestoneData();
+        checkUserType();
 
         Btn_F1_Edit0.setOnClickListener(new View.OnClickListener(){
                                             @Override
@@ -124,9 +119,9 @@ public class Form_Mhs_01 extends AppCompatActivity {
         Intent intent = new Intent(this, Form_Mhs_01_edit3.class);
         startActivity(intent);
     }
-    public void requestMilestoneBio(){
+    public void requestMilestoneBio(String UserId){
         Call<UserDataResponse> getMilestoneBio = mApiService.MilestoneBio(
-                String.valueOf(mPrefs.getUserID()));
+                UserId);
         getMilestoneBio.enqueue(new Callback<UserDataResponse>() {
             @Override
             public void onResponse(Call<UserDataResponse> call, Response<UserDataResponse> response) {
@@ -155,9 +150,9 @@ public class Form_Mhs_01 extends AppCompatActivity {
         });
     }
 
-    public void requestMilestoneData(){
+    public void requestMilestoneData(String UserId){
         Call<MilestoneDataResponse> getMilestoneData = mApiService.MilestoneData(
-                String.valueOf(mPrefs.getUserID()));
+                UserId);
         getMilestoneData.enqueue(new Callback<MilestoneDataResponse>() {
             @Override
             public void onResponse(Call<MilestoneDataResponse> call, Response<MilestoneDataResponse> response) {
@@ -190,9 +185,9 @@ public class Form_Mhs_01 extends AppCompatActivity {
         });
     }
 
-    public void F1_getPhotoPkl(){
+    public void F1_getPhotoPkl(String UserId){
         Call<MilestoneDataResponse> getPhotoPkl = mApiService.getImagePkl(
-                String.valueOf(mPrefs.getUserID()));
+                UserId);
         getPhotoPkl.enqueue(new Callback<MilestoneDataResponse>() {
             @Override
             public void onResponse(Call<MilestoneDataResponse> call, Response<MilestoneDataResponse>response) {
@@ -203,11 +198,15 @@ public class Form_Mhs_01 extends AppCompatActivity {
                 if (iserror.equals("false")) {
                     String[] url_pkl = new String[list.size()];
                     url_pkl[0] = list.get(0).getImage_url();
-                    // url[i] = userDatalist.get(i).getImages().geImage_url();
-                    Log.d("Url Pkl", String.valueOf(url_pkl[0]));
-                    if (url_pkl[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getUserID()+"_pkl.png")){
-                        Log.d("Url Pkl", "true");
-                        showPhotoPkl(url_pkl[0]);}
+                    if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+                        if (url_pkl[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getUserID()+"_pkl.png")){
+                            Log.d("Url Pkl", "true");
+                            showPhotoPkl(url_pkl[0]);}
+                    } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+                        if (url_pkl[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getSelectedUserId()+"_pkl.png")){
+                            Log.d("Url Pkl", "true");
+                            showPhotoPkl(url_pkl[0]);}
+                    }
                 }
             }
 
@@ -227,9 +226,9 @@ public class Form_Mhs_01 extends AppCompatActivity {
                 .into(iv01_pkl);
     }
 
-    public void F1_getPhotoSkripsi(){
+    public void F1_getPhotoSkripsi(String UserId){
         Call<MilestoneDataResponse> getPhotoSkripsi = mApiService.getImageSkripsi(
-                String.valueOf(mPrefs.getUserID()));
+                UserId);
         getPhotoSkripsi.enqueue(new Callback<MilestoneDataResponse>() {
             @Override
             public void onResponse(Call<MilestoneDataResponse> call, Response<MilestoneDataResponse>response) {
@@ -240,11 +239,13 @@ public class Form_Mhs_01 extends AppCompatActivity {
                 if (iserror.equals("false")) {
                     String[] url_skripsi = new String[list.size()];
                     url_skripsi[0] = list.get(0).getImage_url();
-                    // url[i] = userDatalist.get(i).getImages().geImage_url();
-                    Log.d("Url Skripsi", String.valueOf(url_skripsi[0]));
-                    if (url_skripsi[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getUserID()+"_skripsi.png")){
-                        Log.d("Url Pkl", "true");
-                        showPhotoSkripsi(url_skripsi[0]);}
+                    if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+                        if (url_skripsi[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getUserID()+"_skripsi.png")){
+                            showPhotoSkripsi(url_skripsi[0]);}
+                    } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+                        if (url_skripsi[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getSelectedUserId()+"_skripsi.png")){
+                            showPhotoSkripsi(url_skripsi[0]);}
+                    }
                 }
             }
 
@@ -264,9 +265,9 @@ public class Form_Mhs_01 extends AppCompatActivity {
                 .into(iv01_skripsi);
     }
 
-    public void F1_getPhotoWisuda(){
+    public void F1_getPhotoWisuda(String UserId){
         Call<MilestoneDataResponse> getPhotoWisuda = mApiService.getImageWisuda(
-                String.valueOf(mPrefs.getUserID()));
+                UserId);
         getPhotoWisuda.enqueue(new Callback<MilestoneDataResponse>() {
             @Override
             public void onResponse(Call<MilestoneDataResponse> call, Response<MilestoneDataResponse>response) {
@@ -277,11 +278,13 @@ public class Form_Mhs_01 extends AppCompatActivity {
                 if (iserror.equals("false")) {
                     String[] url_wisuda = new String[list.size()];
                     url_wisuda[0] = list.get(0).getImage_url();
-                    // url[i] = userDatalist.get(i).getImages().geImage_url();
-                    Log.d("Url Wisuda", String.valueOf(url_wisuda[0]));
-                    if (url_wisuda[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getUserID()+"_wisuda.png")){
-                        Log.d("Url Pkl", "true");
-                        showPhotoWisuda(url_wisuda[0]);}
+                    if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+                        if (url_wisuda[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getUserID()+"_wisuda.png")){
+                            showPhotoWisuda(url_wisuda[0]);}
+                    } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+                        if (url_wisuda[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getSelectedUserId()+"_wisuda.png")){
+                            showPhotoWisuda(url_wisuda[0]);}
+                    }
                 }
             }
 
@@ -301,12 +304,26 @@ public class Form_Mhs_01 extends AppCompatActivity {
                 .into(iv01_wisuda);
     }
 
-    public void checkType(){
-        if(mPrefs.getUserType().equalsIgnoreCase("dosen")){
+    public void checkUserType(){
+        if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+            F1_getPhotoPkl(String.valueOf(mPrefs.getUserID()));
+            F1_getPhotoSkripsi(String.valueOf(mPrefs.getUserID()));
+            F1_getPhotoWisuda(String.valueOf(mPrefs.getUserID()));
+            requestMilestoneBio(String.valueOf(mPrefs.getUserID()));
+            requestMilestoneData(String.valueOf(mPrefs.getUserID()));
+
+        } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
             Btn_F1_Edit0.setVisibility(View.GONE);
             Btn_F1_Edit1.setVisibility(View.GONE);
             Btn_F1_Edit2.setVisibility(View.GONE);
             Btn_F1_Edit3.setVisibility(View.GONE);
+
+            F1_getPhotoPkl(String.valueOf(mPrefs.getSelectedUserId()));
+            F1_getPhotoSkripsi(String.valueOf(mPrefs.getSelectedUserId()));
+            F1_getPhotoWisuda(String.valueOf(mPrefs.getSelectedUserId()));
+            requestMilestoneBio(String.valueOf(mPrefs.getSelectedUserId()));
+            requestMilestoneData(String.valueOf(mPrefs.getSelectedUserId()));
+
         }
     }
 }

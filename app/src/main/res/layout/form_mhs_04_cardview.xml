@@ -143,8 +143,8 @@
             android:id="@+id/TV04_cardview_catatan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tingkatkan belajarmu lagi ya anak kecil yang pandai"
-            android:textSize="15dp"
+            android:text=""
+            android:textSize="13dp"
             android:textColor="@color/black"
 
             />

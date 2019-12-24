@@ -39,12 +39,12 @@ public class Form_Mhs_00_Photo extends AppCompatActivity {
 
         IVF0_mhs = (ImageView) findViewById(R.id.ImgMhs);
 
-        F0_getPhoto();
+        checkUserType();
     }
 
-    public void F0_getPhoto(){
+    public void F0_getPhoto(String UserId){
         Call<UserDataResponse> getPhoto = mApiService.getImage(
-                String.valueOf(mPrefs.getUserID()));
+                UserId);
         getPhoto.enqueue(new Callback<UserDataResponse>() {
             @Override
             public void onResponse(Call<UserDataResponse> call, Response<UserDataResponse>response) {
@@ -78,4 +78,11 @@ public class Form_Mhs_00_Photo extends AppCompatActivity {
                 .into(IVF0_mhs);
     }
 
+    public void checkUserType(){
+        if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+            F0_getPhoto(String.valueOf(mPrefs.getUserID()));
+        } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+            F0_getPhoto(String.valueOf(mPrefs.getSelectedUserId()));
+        }
+    }
 }

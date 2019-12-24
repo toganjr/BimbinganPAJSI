@@ -13,7 +13,7 @@ public class PreferencesHelper {
     private static final String PREFERENCES_NAME = "PREFERENCES_BimbinganPA";
     private static final String PREFERENCES_KEY_USER_IS_SIGN_IN = "PREFERENCES_KEY_USER_IS_SIGN_IN";
     private static final String PREFERENCES_KEY_USER_ID = "PREFERENCES_KEY_USER_ID";
-    private static final String PREFERENCES_KEY_SELECTED_USER_ID = "PREFERENCES_KEY_USER_ID";
+    private static final String PREFERENCES_KEY_SELECTED_USER_ID = "PREFERENCES_KEY_SELECTED_USER_ID";
     private static final String PREFERENCES_KEY_USER_NAME = "PREFERENCES_KEY_USER_NAME";
     private static final String PREFERENCES_KEY_USER_NO = "PREFERENCES_KEY_USER_NO";
     private static final String PREFERENCES_KEY_USER_SEMESTER = "PREFERENCES_KEY_USER_SEMESTER";
