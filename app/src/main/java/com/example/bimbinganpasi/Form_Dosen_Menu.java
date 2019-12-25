@@ -219,9 +219,13 @@ public class Form_Dosen_Menu extends AppCompatActivity {
 
             if(holder.textViewkatSKS.getText().equals("kritis") || holder.textViewkatSKS.getText().equals("kurang")){
                 holder.textViewkatSKS.setTextColor(Color.rgb(255,0,0));
+            } else {
+                holder.textViewkatSKS.setTextColor(Color.rgb(0,87,75));
             }
             if(holder.textViewKatIPK.getText().equals("kritis") || holder.textViewKatIPK.getText().equals("kurang")){
-                holder.textViewKatIPK.setTextColor(Color.rgb(255,0,0));
+                holder.textViewKatIPK.setTextColor(Color.rgb(0,0,0));
+            } else {
+                holder.textViewKatIPK.setTextColor(Color.rgb(0,87,75));
             }
 
             holder.itemView.setOnClickListener(new View.OnClickListener()

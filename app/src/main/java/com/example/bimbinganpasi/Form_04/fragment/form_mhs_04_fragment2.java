@@ -180,18 +180,24 @@ public class form_mhs_04_fragment2 extends Fragment {
         @Override
         public void onBindViewHolder(form_mhs_04_fragment2.ListAdapter.ViewHolder holder, final int position)
         {
-            if(dataList.get(position).getSkskat().equalsIgnoreCase("kritis") || dataList.get(position).getSkskat().equalsIgnoreCase("kurang")){
-                holder.textViewSKSkat.setTextColor(Color.rgb(255,0,0));
-            }
-            if(dataList.get(position).getIpkkat().equalsIgnoreCase("kritis") || dataList.get(position).getIpkkat().equalsIgnoreCase("kurang")){
-                holder.textViewIPKkat.setTextColor(Color.rgb(255,0,0));
-            }
+
             holder.textViewIPKkat.setText(dataList.get(position).getIpkkat());
             holder.textViewIPKcap.setText("IPK : "+dataList.get(position).getIpkcap());
             holder.textViewSKSkat.setText(dataList.get(position).getSkskat());
             holder.textViewSKScap.setText("SKS : "+dataList.get(position).getSkscap()+" SKS");
             holder.textViewCatatan.setText(dataList.get(position).getCatatan());
             holder.textViewSemester.setText(dataList.get(position).getSemester());
+            if(holder.textViewSKSkat.getText().equals("kritis") || holder.textViewSKSkat.getText().equals("kurang")){
+                holder.textViewSKSkat.setTextColor(Color.rgb(255,0,0));
+            } else {
+                holder.textViewSKSkat.setTextColor(Color.rgb(0,0,0));
+            }
+            if(holder.textViewIPKkat.getText().equals("kritis") || holder.textViewIPKkat.getText().equals("kurang")){
+                holder.textViewIPKkat.setTextColor(Color.rgb(255,0,0));
+            } else {
+                holder.textViewIPKkat.setTextColor(Color.rgb(0,0,0));
+            }
+
             holder.itemView.setOnClickListener(new View.OnClickListener()
             {
                 @Override

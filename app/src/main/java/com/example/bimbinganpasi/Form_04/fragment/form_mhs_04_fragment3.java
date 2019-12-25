@@ -62,7 +62,7 @@ public class form_mhs_04_fragment3 extends Fragment {
         mApiService = UtilsApi.getClient().create(BaseAPIService.class); // meng-init yang ada di package apihelper
         mPrefs = ((BimbPA) getActivity().getApplication()).getPrefs();
 
-        mChart = view.findViewById(R.id.chart);
+        mChart = view.findViewById(R.id.chart3);
 
         x = new ArrayList<String>();
         y = new ArrayList<Entry>();

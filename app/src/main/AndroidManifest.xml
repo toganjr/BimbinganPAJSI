@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Kosong"></activity>
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".Form_Dosen_Menu"/>
         <activity android:name=".Form_Mhs_Menu"/>
+        <activity android:name=".LoginActivity"/>
         <activity
             android:name=".Form_Mhs_00"
             android:launchMode="singleInstance"></activity>

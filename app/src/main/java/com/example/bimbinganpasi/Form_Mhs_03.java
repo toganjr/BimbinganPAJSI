@@ -210,11 +210,9 @@ public class Form_Mhs_03 extends AppCompatActivity {
             holder.textViewKeterangan.setText(dataList.get(position).getKeterangan());
             holder.textViewKategori.setText(dataList.get(position).getKategori());
             holder.textViewSemester.setText(dataList.get(position).getSemester());
-            holder.itemView.setOnClickListener(new View.OnClickListener()
-            {
+            holder.imageViewDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View view) {
                     new AlertDialog.Builder(mContext)
                             .setTitle("Delete Portofolio")
                             .setMessage("Are you sure you want to delete this portofolio?")
@@ -233,6 +231,12 @@ public class Form_Mhs_03 extends AppCompatActivity {
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                 }
+            });
+            holder.itemView.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                { }
             });
         }
 

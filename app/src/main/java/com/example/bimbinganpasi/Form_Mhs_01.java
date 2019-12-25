@@ -34,6 +34,8 @@ public class Form_Mhs_01 extends AppCompatActivity {
     BaseAPIService mApiService;
     Context mContext;
     public static Activity Form_Mhs_01;
+    final public String url_foto = "http://topsisfhj.xyz/BimbinganPA_JSI/include//uploads/";
+//    final public String url_foto = "http://192.168.1.10/BimbinganPA/include//uploads/";
 
     TextView tv01_mhs,tv01_nim,tv01_dosen,tv01_prodi,tv01_ipk,tv01_catatan,tv01_pklpendaftaran,tv01_pklpelaksanaan
             ,tv01_skripsipra,tv01_skripsipengerjaan,tv01_skripsisemhas,tv01_wisuda;
@@ -199,11 +201,11 @@ public class Form_Mhs_01 extends AppCompatActivity {
                     String[] url_pkl = new String[list.size()];
                     url_pkl[0] = list.get(0).getImage_url();
                     if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
-                        if (url_pkl[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getUserID()+"_pkl.png")){
+                        if (url_pkl[0].equalsIgnoreCase(url_foto+mPrefs.getUserID()+"_pkl.png")){
                             Log.d("Url Pkl", "true");
                             showPhotoPkl(url_pkl[0]);}
                     } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
-                        if (url_pkl[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getSelectedUserId()+"_pkl.png")){
+                        if (url_pkl[0].equalsIgnoreCase(url_foto+mPrefs.getSelectedUserId()+"_pkl.png")){
                             Log.d("Url Pkl", "true");
                             showPhotoPkl(url_pkl[0]);}
                     }
@@ -240,10 +242,10 @@ public class Form_Mhs_01 extends AppCompatActivity {
                     String[] url_skripsi = new String[list.size()];
                     url_skripsi[0] = list.get(0).getImage_url();
                     if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
-                        if (url_skripsi[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getUserID()+"_skripsi.png")){
+                        if (url_skripsi[0].equalsIgnoreCase(url_foto+mPrefs.getUserID()+"_skripsi.png")){
                             showPhotoSkripsi(url_skripsi[0]);}
                     } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
-                        if (url_skripsi[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getSelectedUserId()+"_skripsi.png")){
+                        if (url_skripsi[0].equalsIgnoreCase(url_foto+mPrefs.getSelectedUserId()+"_skripsi.png")){
                             showPhotoSkripsi(url_skripsi[0]);}
                     }
                 }
@@ -279,10 +281,10 @@ public class Form_Mhs_01 extends AppCompatActivity {
                     String[] url_wisuda = new String[list.size()];
                     url_wisuda[0] = list.get(0).getImage_url();
                     if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
-                        if (url_wisuda[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getUserID()+"_wisuda.png")){
+                        if (url_wisuda[0].equalsIgnoreCase(url_foto+mPrefs.getUserID()+"_wisuda.png")){
                             showPhotoWisuda(url_wisuda[0]);}
                     } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
-                        if (url_wisuda[0].equalsIgnoreCase("http://192.168.1.10/BimbinganPA/include//uploads/"+mPrefs.getSelectedUserId()+"_wisuda.png")){
+                        if (url_wisuda[0].equalsIgnoreCase(url_foto+mPrefs.getSelectedUserId()+"_wisuda.png")){
                             showPhotoWisuda(url_wisuda[0]);}
                     }
                 }

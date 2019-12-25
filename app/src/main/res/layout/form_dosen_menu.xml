@@ -11,8 +11,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
                 <LinearLayout
@@ -34,20 +34,27 @@
                             android:text="-"
                             android:textColor="#FFF"
                             android:textSize="20dp"
-                            android:padding="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             app:fontFamily="sans-serif-medium"
-                            android:background="@color/colorPrimaryDark"
+                            android:background="@drawable/rounded_squaredark"
                             android:textAllCaps="true"
                             />
 
                         <TextView
                             android:id="@+id/NIDosen"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_below="@+id/NamaUser"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
                             android:layout="@+id/ImageUser"
                             android:layout_gravity="left"
                             android:text="-"
@@ -88,12 +95,13 @@
                     android:id="@+id/form_dosen_list"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:paddingBottom="10dp"
 
                     app:layout_constraintTop_toBottomOf="@+id/mhs3_TV1"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
 
-                    app:layout_constraintWidth_percent=".9"
+                    app:layout_constraintWidth_percent="1"
                     app:layout_constraintWidth_default="percent"
 
                     app:layout_constraintHeight_percent=".9"
