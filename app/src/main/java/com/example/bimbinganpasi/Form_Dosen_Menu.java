@@ -223,7 +223,7 @@ public class Form_Dosen_Menu extends AppCompatActivity {
                 holder.textViewkatSKS.setTextColor(Color.rgb(0,87,75));
             }
             if(holder.textViewKatIPK.getText().equals("kritis") || holder.textViewKatIPK.getText().equals("kurang")){
-                holder.textViewKatIPK.setTextColor(Color.rgb(0,0,0));
+                holder.textViewKatIPK.setTextColor(Color.rgb(255,0,0));
             } else {
                 holder.textViewKatIPK.setTextColor(Color.rgb(0,87,75));
             }

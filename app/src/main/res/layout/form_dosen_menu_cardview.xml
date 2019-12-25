@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginBottom="5dp"
     android:foreground="?attr/selectableItemBackground">
 
     <LinearLayout
@@ -15,8 +15,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:padding="5dp"
+            android:background="@drawable/rounded_squaredark"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:orientation="vertical"
             >
             <TextView
@@ -39,27 +44,21 @@
                 />
 
         </LinearLayout>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:src="@color/colorPrimaryDark"
-            android:layout_marginBottom="5dp"
-            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
             >
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
-                android:text="Semester "
-                android:textSize="15dp"
+                android:text="Semester"
                 android:textColor="@color/black"
-                />
+                android:textSize="15dp" />
             <TextView
                 android:id="@+id/TVD_cardview_semester"
                 android:layout_width="wrap_content"
@@ -71,14 +70,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:text="Kategori SKS "
+                android:text="Kategori SKS"
                 android:textSize="15dp"
                 android:textColor="@color/black"
                 />
@@ -93,14 +92,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:text="Kategori IPK "
+                android:text="Kategori IPK"
                 android:textSize="15dp"
                 android:textColor="@color/black"
                 />

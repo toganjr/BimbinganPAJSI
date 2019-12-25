@@ -23,8 +23,6 @@ public class SplashActivity extends AppCompatActivity {
         mPrefs = ((BimbPA) getApplication()).getPrefs();
         mContext = this;
 
-        getSupportActionBar().hide();
-
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
