@@ -182,6 +182,12 @@ public interface BaseAPIService {
                                         @Field("semester") String semester);
 
     @FormUrlEncoded
+    @POST("include/tambahCatatanDosenPAF4.php")
+    Call<MessageResponse> tambahCatatanPAF4(@Field("no") int no,
+                                          @Field("catatan") String catatan,
+                                          @Field("semester") int semester);
+
+    @FormUrlEncoded
     @POST("include/tambahMatkul.php")
     Call<tambahMatkulResponse> tambahMatkulMhs(@Field("no") int no,
                                                @Field("no_matkul") int no_matkul,
@@ -253,6 +259,11 @@ public interface BaseAPIService {
     @FormUrlEncoded
     @POST("include/getCatatanPA.php")
     Call<CatatanPAResponse> getCatatanPA(@Field("no") String no,
+                                         @Field("semester") int semester);
+
+    @FormUrlEncoded
+    @POST("include/getCatatanPAF4.php")
+    Call<CatatanPAResponse> getCatatanPAF4(@Field("no") String no,
                                          @Field("semester") int semester);
 
     @FormUrlEncoded

@@ -122,11 +122,20 @@ public class form_mhs_02_fragment5 extends Fragment {
                     list = response.body().getIpList();
                     x.add("");
                     y.add(new Entry(0,0));
-                    for (int i = 0; i < list.size(); i++) {
+                    if (list.size() < 9){
+                        for (int i = 0; i < list.size(); i++) {
+                                String value = String.valueOf(list.get(i).getSemester());
+                                double date = list.get(i).getIp();
+                                x.add(value);
+                                y.add(new Entry((float)date, i+1));
+                        }
+                    } else {
+                        for (int i = 0; i < 8; i++) {
                             String value = String.valueOf(list.get(i).getSemester());
                             double date = list.get(i).getIp();
                             x.add(value);
-                            y.add(new Entry((float)date, i+1));
+                            y.add(new Entry((float) date, i + 1));
+                        }
                     }
                     LineDataSet set1 = new LineDataSet(y,"Semester");
                     set1.setLineWidth(2f);
@@ -156,11 +165,20 @@ public class form_mhs_02_fragment5 extends Fragment {
                     list = response.body().getIpList();
                     x2.add("");
                     y2.add(new Entry(0,0));
-                    for (int i = 0; i < list.size(); i++) {
-                        String value = String.valueOf(list.get(i).getSemester());
-                        double date = list.get(i).getIp();
-                        x2.add(value);
-                        y2.add(new Entry((float)date, i+1));
+                    if (list.size() < 9) {
+                        for (int i = 0; i < list.size(); i++) {
+                            String value = String.valueOf(list.get(i).getSemester());
+                            double date = list.get(i).getIp();
+                            x2.add(value);
+                            y2.add(new Entry((float) date, i + 1));
+                        }
+                    } else {
+                        for (int i = 0; i < 8; i++) {
+                            String value = String.valueOf(list.get(i).getSemester());
+                            double date = list.get(i).getIp();
+                            x2.add(value);
+                            y2.add(new Entry((float) date, i + 1));
+                        }
                     }
                     LineDataSet set2 = new LineDataSet(y2,"Semester");
                     set2.setLineWidth(2f);

@@ -36,8 +36,9 @@ public class Form_Mhs_02_tambah extends AppCompatActivity {
     Button btnSave;
 
     String target;
-    int semester_min,no_matkul;
+    int semester_min,no_matkul,semester_mhs;
     int[] no_id_matkul;
+    String [] nama_matkul;
     Context mContext;
     BaseAPIService mApiService;
     PreferencesHelper mPrefs;
@@ -53,6 +54,7 @@ public class Form_Mhs_02_tambah extends AppCompatActivity {
         mApiService = UtilsApi.getClient().create(BaseAPIService.class);
         mPrefs = ((BimbPA) getApplication()).getPrefs();
         //receiveData();
+        semester_mhs = Integer.parseInt(mPrefs.getUserSmt())+1;
 
         btnSave.setOnClickListener(new View.OnClickListener(){
                                         @Override
@@ -61,19 +63,19 @@ public class Form_Mhs_02_tambah extends AppCompatActivity {
                                                 Toast.makeText(mContext, "Masukkan Target Nilai", Toast.LENGTH_SHORT).show();
                                             } else {
                                                 Form_Mhs_02.Form_Mhs_02.finish();
-                                                tambahMatkul(mPrefs.getUserID(), no_matkul, setTarget.getText().toString(), Integer.parseInt(mPrefs.getUserSmt()));
+                                                tambahMatkul(mPrefs.getUserID(), no_matkul, setTarget.getText().toString(), semester_mhs);
                                             }
                                         }
                                     }
         );
 
-        initSpinnerMatkulList(Integer.parseInt(mPrefs.getUserSmt()));
+        initSpinnerMatkulList(semester_mhs);
         spinnerMatkulList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedName = parent.getItemAtPosition(position).toString();
 //                requestDetailDosen(selectedName);
-                Toast.makeText(mContext, "Kamu memilih mata kuliah " + no_id_matkul[position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Kamu memilih mata kuliah " + nama_matkul[position], Toast.LENGTH_SHORT).show();
                 no_matkul = no_id_matkul[position];
             }
 
@@ -94,9 +96,11 @@ public class Form_Mhs_02_tambah extends AppCompatActivity {
                     List<Matkul> semuaMatkulList = response.body().getMatkul();
                     List<String> listSpinner = new ArrayList<String>();
                     no_id_matkul = new int[semuaMatkulList.size()];
+                    nama_matkul = new String[semuaMatkulList.size()];
                     for (int i = 0; i < semuaMatkulList.size(); i++){
                         listSpinner.add(semuaMatkulList.get(i).getNamaMatkul());
                         no_id_matkul[i] = semuaMatkulList.get(i).getNo();
+                        nama_matkul[i] = semuaMatkulList.get(i).getNamaMatkul();
                     }
                     // Set hasil result json ke dalam adapter spinner
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext,

@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:textColor="@color/darkgray"
-            android:textAllCaps="true"
+            android:inputType="textCapSentences"
             />
         <ImageView
             android:layout_width="match_parent"

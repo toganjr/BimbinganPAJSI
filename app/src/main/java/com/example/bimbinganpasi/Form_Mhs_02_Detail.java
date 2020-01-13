@@ -88,6 +88,7 @@ public class Form_Mhs_02_Detail extends AppCompatActivity {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if (response.isSuccessful()) {
+                    Form_Mhs_02.Form_Mhs_02.finish();
                     Intent i = new Intent(getBaseContext(),Form_Mhs_02.class);
                     startActivity(i);
                     Toast.makeText(mContext, "Mata Kuliah telah dihapus", Toast.LENGTH_SHORT).show();

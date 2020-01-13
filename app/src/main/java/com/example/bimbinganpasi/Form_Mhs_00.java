@@ -198,17 +198,12 @@ public class Form_Mhs_00 extends AppCompatActivity {
                     if (iserror.equals("false")) {
                         String[] url = new String[list.size()];
                         url[0] = list.get(0).getImage_url();
-                        // url[i] = userDatalist.get(i).getImages().geImage_url();
-                        Log.d("Url ", String.valueOf(url[0]));
                         showPhoto(url[0]);
                     }
                 }
-//                    Glide.with(mContext).load(url).into(IVF0_mhs);
-//                    }
 
             @Override
             public void onFailure(Call<UserDataResponse> call, Throwable t){
-                Log.d("url TEST 2 ", "FAIL");
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
             }
         });

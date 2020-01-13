@@ -1,5 +1,6 @@
 package com.example.bimbinganpasi;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import com.google.android.material.tabs.TabLayout;
 public class Form_Mhs_04 extends AppCompatActivity {
 
     private TabLayout tabs;
+    public static Activity Form_Mhs_04;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,5 +23,6 @@ public class Form_Mhs_04 extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+        Form_Mhs_04 = this;
 
     }}

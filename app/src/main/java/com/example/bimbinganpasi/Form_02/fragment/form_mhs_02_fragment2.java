@@ -455,16 +455,28 @@ public class form_mhs_02_fragment2 extends Fragment {
                     String skripsi = String.valueOf(response.body().getSkripsi());
                     String lulus = String.valueOf(response.body().getLulus());
                     String catatan = "";
-                    if (metpen != "null"){
-                        catatan += metpen;}
-                    if (pkl1 != "null"){
-                        catatan += pkl1;}
-                    if (pkl2 != "null"){
-                        catatan += pkl2;}
-                    if (skripsi != "null"){
-                        catatan += skripsi;}
+                    if ((metpen != "null") && ((pkl1 == "null") && (pkl2 == "null") && (skripsi == "null") && (lulus == "null"))){
+                        catatan += (metpen + System.getProperty ("line.separator"));
+                    } else if (metpen != "null") {
+                        catatan += (metpen + System.getProperty ("line.separator") + System.getProperty ("line.separator"));
+                    }
+                    if ((pkl1 != "null") && ((pkl2 == "null") && (skripsi == "null") && (lulus == "null"))){
+                        catatan += (pkl1 + System.getProperty ("line.separator"));
+                    } else if (pkl1 != "null"){
+                        catatan += (pkl1 + System.getProperty ("line.separator") + System.getProperty ("line.separator"));
+                    }
+                    if ((pkl2 != "null") && ((skripsi == "null") && (lulus == "null"))){
+                        catatan += (pkl2 + System.getProperty ("line.separator"));
+                    } else if (pkl2 != "null") {
+                        catatan += (pkl2 + System.getProperty ("line.separator") + System.getProperty ("line.separator"));
+                    }
+                    if ((skripsi != "null") && ((lulus == "null"))){
+                        catatan += (skripsi + System.getProperty ("line.separator"));
+                    } else if (skripsi != "null"){
+                        catatan += (skripsi + System.getProperty ("line.separator") + System.getProperty ("line.separator"));
+                    }
                     if (lulus != "null"){
-                        catatan += lulus;}
+                        catatan += (lulus  + System.getProperty ("line.separator"));}
                     tv_catatanodd.setText(catatan);
                     if (tv_catatanodd.getText().toString().equals("")){
                         tv_catatanodd.setVisibility(View.GONE);
@@ -494,16 +506,28 @@ public class form_mhs_02_fragment2 extends Fragment {
                     String skripsi = String.valueOf(response.body().getSkripsi());
                     String lulus = String.valueOf(response.body().getLulus());
                     String catatan = "";
-                    if (metpen != "null"){
-                        catatan += metpen;}
-                    if (pkl1 != "null"){
-                        catatan += pkl1;}
-                    if (pkl2 != "null"){
-                        catatan += pkl2;}
-                    if (skripsi != "null"){
-                        catatan += skripsi;}
+                    if ((metpen != "null") && ((pkl1 == "null") && (pkl2 == "null") && (skripsi == "null") && (lulus == "null"))){
+                        catatan += (metpen + System.getProperty ("line.separator"));
+                    } else if (metpen != "null") {
+                        catatan += (metpen + System.getProperty ("line.separator") + System.getProperty ("line.separator"));
+                    }
+                    if ((pkl1 != "null") && ((pkl2 == "null") && (skripsi == "null") && (lulus == "null"))){
+                        catatan += (pkl1 + System.getProperty ("line.separator"));
+                    } else if (pkl1 != "null"){
+                        catatan += (pkl1 + System.getProperty ("line.separator") + System.getProperty ("line.separator"));
+                    }
+                    if ((pkl2 != "null") && ((skripsi == "null") && (lulus == "null"))){
+                        catatan += (pkl2 + System.getProperty ("line.separator"));
+                    } else if (pkl2 != "null") {
+                        catatan += (pkl2 + System.getProperty ("line.separator") + System.getProperty ("line.separator"));
+                    }
+                    if ((skripsi != "null") && ((lulus == "null"))){
+                        catatan += (skripsi + System.getProperty ("line.separator"));
+                    } else if (skripsi != "null"){
+                        catatan += (skripsi + System.getProperty ("line.separator") + System.getProperty ("line.separator"));
+                    }
                     if (lulus != "null"){
-                        catatan += lulus;}
+                        catatan += (lulus  + System.getProperty ("line.separator"));}
                     tv_catataneven.setText(catatan);
                     if (tv_catataneven.getText().toString().equals("")){
                         tv_catataneven.setVisibility(View.GONE);
@@ -528,7 +552,7 @@ public class form_mhs_02_fragment2 extends Fragment {
                 boolean iserror_ = response.body().getError();
                 if (iserror_ == false) {
                     String catatanPA = String.valueOf(response.body().getCatatan());
-                    tv_catatanodd2.setText(catatanPA);
+                    tv_catatanodd2.setText(catatanPA + System.getProperty ("line.separator"));
                 }
             }
             @Override
@@ -549,7 +573,7 @@ public class form_mhs_02_fragment2 extends Fragment {
                 boolean iserror_ = response.body().getError();
                 if (iserror_ == false) {
                     String catatanPA = String.valueOf(response.body().getCatatan());
-                    tv_catataneven2.setText(catatanPA);
+                    tv_catataneven2.setText(catatanPA + System.getProperty ("line.separator"));
                 }
             }
             @Override
@@ -599,9 +623,9 @@ public class form_mhs_02_fragment2 extends Fragment {
             getCatatanEven(String.valueOf(mPrefs.getUserID()));
             getCatatanPAOdd(String.valueOf(mPrefs.getUserID()));
             getCatatanPAEven(String.valueOf(mPrefs.getUserID()));
-            if(Integer.valueOf(mPrefs.getUserSmt()) == 3) {
+            if(Integer.valueOf(mPrefs.getUserSmt()) == 2) {
                 btn_smt4.removeView(btnF2_semester4);
-            } else if (Integer.valueOf(mPrefs.getUserSmt()) == 4){
+            } else if (Integer.valueOf(mPrefs.getUserSmt()) == 3){
                 btn_smt3.removeView(btnF2_semester3);
             } else {
                 btn_smt3.removeView(btnF2_semester3);
@@ -646,7 +670,9 @@ public class form_mhs_02_fragment2 extends Fragment {
         {
             holder.textViewMatkul.setText(dataList.get(position).getMatkul_list());
             holder.textViewSks.setText(dataList.get(position).getSks_list()+" SKS");
-            if (realisasi_list[position].equals("")){
+            if (Integer.parseInt(mPrefs.getUserSmt()) >= 3){
+                holder.textViewMatkul.setTextColor(Color.rgb(0,87,75));
+            } else {
                 holder.textViewMatkul.setTextColor(Color.rgb(255,0,0));
             }
             holder.itemView.setOnClickListener(new View.OnClickListener()
@@ -712,7 +738,9 @@ public class form_mhs_02_fragment2 extends Fragment {
         {
             holder.textViewMatkul.setText(dataList.get(position).getMatkul_list());
             holder.textViewSks.setText(dataList.get(position).getSks_list()+" SKS");
-            if (realisasi_list2[position].equals("")){
+            if (Integer.parseInt(mPrefs.getUserSmt()) >= 4){
+                holder.textViewMatkul.setTextColor(Color.rgb(0,87,75));
+            } else {
                 holder.textViewMatkul.setTextColor(Color.rgb(255,0,0));
             }
             holder.itemView.setOnClickListener(new View.OnClickListener()

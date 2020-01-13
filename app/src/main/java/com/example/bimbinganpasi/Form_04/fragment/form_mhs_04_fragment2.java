@@ -1,5 +1,6 @@
 package com.example.bimbinganpasi.Form_04.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import com.example.bimbinganpasi.BimbPA;
 import com.example.bimbinganpasi.Data.ListForm4Response;
 import com.example.bimbinganpasi.Data.List_Form4;
 import com.example.bimbinganpasi.Form_04.adapter.DataNote;
+import com.example.bimbinganpasi.Form_Mhs_04_tambahcatatan;
 import com.example.bimbinganpasi.Form_Mhs_Menu;
 import com.example.bimbinganpasi.PreferencesHelper;
 import com.example.bimbinganpasi.R;
@@ -155,6 +158,7 @@ public class form_mhs_04_fragment2 extends Fragment {
             TextView textViewSKSkat;
             TextView textViewCatatan;
             TextView textViewSemester;
+            Button btnCatatan;
 
             public ViewHolder(View itemView)
             {
@@ -165,6 +169,7 @@ public class form_mhs_04_fragment2 extends Fragment {
                 this.textViewSKScap = (TextView) itemView.findViewById(R.id.TV04_cardview_skscap);
                 this.textViewSKSkat = (TextView) itemView.findViewById(R.id.TV04_cardview_skskat);
                 this.textViewCatatan = (TextView) itemView.findViewById(R.id.TV04_cardview_catatan);
+                this.btnCatatan = (Button) itemView.findViewById(R.id.BTN04_cardview);
             }
         }
 
@@ -197,12 +202,27 @@ public class form_mhs_04_fragment2 extends Fragment {
             } else {
                 holder.textViewIPKkat.setTextColor(Color.rgb(0,0,0));
             }
-
+            if (mPrefs.getUserType().equalsIgnoreCase("dosen")) {
+                if (position+1  != (Integer.parseInt(mPrefs.getUserSmt())-1)) {
+                    holder.btnCatatan.setVisibility(View.GONE);
+                }
+            } else {
+                holder.btnCatatan.setVisibility(View.GONE);
+            }
             holder.itemView.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
+                }
+            });
+            holder.btnCatatan.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent = new Intent(getContext(), Form_Mhs_04_tambahcatatan.class);
+                    startActivity(intent);
                 }
             });
         }

@@ -22,11 +22,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Form_Mhs_02_tambahcatatan extends AppCompatActivity {
+public class Form_Mhs_04_tambahcatatan extends AppCompatActivity {
 
-    @BindView(R.id.setCatatan)
+    @BindView(R.id.set04Catatan)
     EditText setCatatan;
-    @BindView(R.id.btn02Savectt)
+    @BindView(R.id.btn04Savectt)
     Button btnSave;
 
     Context mContext;
@@ -36,7 +36,7 @@ public class Form_Mhs_02_tambahcatatan extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.form_mhs_02_tambahcatatan);
+        setContentView(R.layout.form_mhs_04_tambahcatatan);
 
         ButterKnife.bind(this);
         mContext = this;
@@ -48,19 +48,19 @@ public class Form_Mhs_02_tambahcatatan extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener(){
                                        @Override
                                        public void onClick(View view) {
-                                               Form_Mhs_02.Form_Mhs_02.finish();
-                                               tambahCatatanPA(mPrefs.getSelectedUserId(),setCatatan.getText().toString(),mPrefs.getUserSmt());
+                                           Form_Mhs_04.Form_Mhs_04.finish();
+                                           tambahCatatanPA(mPrefs.getSelectedUserId(),setCatatan.getText().toString(),Integer.parseInt(mPrefs.getUserSmt())-1);
                                        }
                                    }
         );
     }
 
     public void requestCatatanData(){
-        Call<CatatanPAResponse> getCatatanPA = mApiService.getCatatanPA(
+        Call<CatatanPAResponse> getCatatanPAF4 = mApiService.getCatatanPAF4(
                 String.valueOf(mPrefs.getSelectedUserId()),
-                Integer.parseInt(mPrefs.getUserSmt())
+                Integer.parseInt(mPrefs.getUserSmt())-1
         );
-        getCatatanPA.enqueue(new Callback<CatatanPAResponse>() {
+        getCatatanPAF4.enqueue(new Callback<CatatanPAResponse>() {
             @Override
             public void onResponse(Call<CatatanPAResponse> call, Response<CatatanPAResponse> response) {
                 boolean iserror_ = response.body().getError();
@@ -76,16 +76,16 @@ public class Form_Mhs_02_tambahcatatan extends AppCompatActivity {
         });
     }
 
-    public void tambahCatatanPA(int no_user_id, String catatan, String semester){
-        Call<MessageResponse> tambahCatatanPA = mApiService.tambahCatatanPA(
+    public void tambahCatatanPA(int no_user_id, String catatan, int semester){
+        Call<MessageResponse> tambahCatatanPAF4 = mApiService.tambahCatatanPAF4(
                 no_user_id,
                 catatan,
                 semester);
-        tambahCatatanPA.enqueue(new Callback<MessageResponse>() {
+        tambahCatatanPAF4.enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if (response.isSuccessful()) {
-                    Intent i = new Intent(getBaseContext(),Form_Mhs_02.class);
+                    Intent i = new Intent(getBaseContext(),Form_Mhs_04.class);
                     startActivity(i);
                     Toast.makeText(mContext, "Catatan telah ditambahkan", Toast.LENGTH_SHORT).show();
                     finish();
