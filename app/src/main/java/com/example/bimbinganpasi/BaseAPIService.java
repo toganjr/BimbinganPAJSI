@@ -7,6 +7,7 @@ import com.example.bimbinganpasi.Data.EvalMhsResponse;
 import com.example.bimbinganpasi.Data.EvalParaResponse;
 import com.example.bimbinganpasi.Data.IPKResponse;
 import com.example.bimbinganpasi.Data.IpListResponse;
+import com.example.bimbinganpasi.Data.KomenPortoResponse;
 import com.example.bimbinganpasi.Data.ListForm4Response;
 import com.example.bimbinganpasi.Data.LogbookMhsResponse;
 import com.example.bimbinganpasi.Data.MatkulList;
@@ -14,6 +15,7 @@ import com.example.bimbinganpasi.Data.MatkulMhsResponse;
 import com.example.bimbinganpasi.Data.MessageResponse;
 import com.example.bimbinganpasi.Data.MhsBimbinganResponse;
 import com.example.bimbinganpasi.Data.MilestoneDataResponse;
+import com.example.bimbinganpasi.Data.Porto_Mhs;
 import com.example.bimbinganpasi.Data.PortofolioMhsResponse;
 import com.example.bimbinganpasi.Data.UserDataResponse;
 import com.example.bimbinganpasi.Data.UserIDResponse;
@@ -186,6 +188,10 @@ public interface BaseAPIService {
     Call<MessageResponse> tambahCatatanPAF4(@Field("no") int no,
                                           @Field("catatan") String catatan,
                                           @Field("semester") int semester);
+    @FormUrlEncoded
+    @POST("include/tambahKomenPorto.php")
+    Call<MessageResponse> tambahKomenPorto(@Field("no") int no,
+                                            @Field("komentar") String komentar);
 
     @FormUrlEncoded
     @POST("include/tambahMatkul.php")
@@ -273,6 +279,10 @@ public interface BaseAPIService {
     @FormUrlEncoded
     @POST("include/getPortoMhs.php")
     Call<PortofolioMhsResponse> getPortoMhs(@Field("no") String no);
+
+    @FormUrlEncoded
+    @POST("include/getKomenPorto.php")
+    Call<KomenPortoResponse> getKomenPorto(@Field("no") String no);
 
     @FormUrlEncoded
     @POST("include/getLogbookMhs.php")

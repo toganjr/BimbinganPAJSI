@@ -124,5 +124,37 @@
                 android:textColor="@color/colorPrimaryDark"
                 />
         </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Komentar Dosen PA"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            />
+
+        <TextView
+            android:id="@+id/TV03_cardview_komentar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="-"
+            android:textSize="13dp"
+            android:textColor="@color/colorPrimaryDark"
+            />
+        <Button
+            android:id="@+id/TV03_BtnKomen"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:text="Tambah Komentar"
+            android:textSize="13dp"
+            android:textColor="@color/white"
+            android:layout_gravity="right"
+            android:background="@drawable/rounded_squaredark"
+            />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

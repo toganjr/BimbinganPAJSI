@@ -20,6 +20,9 @@ public class Porto_Mhs {
     @SerializedName("semester")
     @Expose
     private String semester;
+    @SerializedName("komentar")
+    @Expose
+    private String komentar;
 
     public Integer getNo() {
         return no;
@@ -60,5 +63,14 @@ public class Porto_Mhs {
     public void setSemester(String semester) {
         this.semester = semester;
     }
+
+    public String getKomentar() {
+        return komentar;
+    }
+
+    public void setKomentar(String komentar) {
+        this.komentar = komentar;
+    }
+
 
 }

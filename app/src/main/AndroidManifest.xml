@@ -47,6 +47,7 @@
         <activity android:name=".Form_Mhs_02_Detail"/>
         <activity android:name=".Form_Mhs_03" />
         <activity android:name=".Form_Mhs_03_tambah"/>
+        <activity android:name=".Form_Mhs_03_tambahkomentar"/>
         <activity android:name=".Form_Mhs_04" />
         <activity android:name=".Form_Mhs_04_tambahcatatan"/>
         <activity android:name=".Form_Mhs_05" />

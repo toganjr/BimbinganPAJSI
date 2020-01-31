@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +48,7 @@ public class Form_Mhs_03 extends AppCompatActivity {
     FloatingActionButton fab_add;
 
     int [] no_list;
-    String [] kegiatan_list,keterangan_list,kategori_list,semester_list;
+    String [] kegiatan_list,keterangan_list,kategori_list,semester_list,komentar_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,12 +96,14 @@ public class Form_Mhs_03 extends AppCompatActivity {
                     keterangan_list = new String[list.size()];
                     kategori_list = new String[list.size()];
                     semester_list = new String[list.size()];
+                    komentar_list = new String[list.size()];
                     for (int i =0;i<list.size();i++) {
                         no_list[i] = list.get(i).getNo();
                         kegiatan_list[i] = list.get(i).getKegiatan();
                         keterangan_list[i] = list.get(i).getKeterangan();
                         kategori_list[i] = list.get(i).getKategori();
                         semester_list[i]  = list.get(i).getSemester();
+                        komentar_list[i] = list.get(i).getKomentar();
                     }
 
                     ArrayList data = new ArrayList<DataNote>();
@@ -113,7 +116,8 @@ public class Form_Mhs_03 extends AppCompatActivity {
                                                 kegiatan_list[i],
                                                 keterangan_list[i],
                                                 kategori_list[i],
-                                                semester_list[i]
+                                                semester_list[i],
+                                                komentar_list[i]
                                         ));
                     }
 
@@ -178,7 +182,10 @@ public class Form_Mhs_03 extends AppCompatActivity {
             TextView textViewKeterangan;
             TextView textViewKategori;
             TextView textViewSemester;
+            TextView textViewKomentar;
             ImageView imageViewDelete;
+            Button buttonKomen;
+            ViewGroup btn_kmn;
 
             public ViewHolder(View itemView)
             {
@@ -187,7 +194,10 @@ public class Form_Mhs_03 extends AppCompatActivity {
                 this.textViewKegiatan = (TextView) itemView.findViewById(R.id.TV03_cardview_kegiatan);
                 this.textViewKeterangan = (TextView) itemView.findViewById(R.id.TV03_cardview_keterangan);
                 this.textViewKategori = (TextView) itemView.findViewById(R.id.TV03_cardview_kategori);
+                this.textViewKomentar = (TextView) itemView.findViewById(R.id.TV03_cardview_komentar);
                 this.imageViewDelete = (ImageView) itemView.findViewById(R.id.IV03_cardview_delete);
+                this.buttonKomen = (Button) itemView.findViewById(R.id.TV03_BtnKomen);
+                btn_kmn = (ViewGroup) buttonKomen.getParent();
             }
         }
 
@@ -203,13 +213,20 @@ public class Form_Mhs_03 extends AppCompatActivity {
         @Override
         public void onBindViewHolder(ListAdapter.ViewHolder holder, final int position)
         {
-            if(mPrefs.getUserType().equalsIgnoreCase("dosen")){
+            if(mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+                holder.btn_kmn.removeView(holder.buttonKomen);
+            } else {
                 holder.imageViewDelete.setVisibility(View.GONE);
             }
             holder.textViewKegiatan.setText(dataList.get(position).getKegiatan());
             holder.textViewKeterangan.setText(dataList.get(position).getKeterangan());
             holder.textViewKategori.setText(dataList.get(position).getKategori());
             holder.textViewSemester.setText(dataList.get(position).getSemester());
+            if (!dataList.get(position).getKomentar().equals("")) {
+                holder.textViewKomentar.setText(dataList.get(position).getKomentar());
+            } else {
+
+            }
             holder.imageViewDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -230,6 +247,16 @@ public class Form_Mhs_03 extends AppCompatActivity {
                             .setNegativeButton(android.R.string.no, null)
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
+                }
+            });
+            holder.buttonKomen.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent = new Intent(getBaseContext(), Form_Mhs_03_tambahkomentar.class);
+                    intent.putExtra("no_porto", dataList.get(position).getNo());
+                    startActivity(intent);
                 }
             });
             holder.itemView.setOnClickListener(new View.OnClickListener()
