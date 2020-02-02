@@ -17,6 +17,9 @@ public class Logbook_Mhs {
     @SerializedName("semester")
     @Expose
     private Integer semester;
+    @SerializedName("status")
+    @Expose
+    private Integer status;
 
     public Integer getNo() {
         return no;
@@ -50,4 +53,11 @@ public class Logbook_Mhs {
         this.semester = semester;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 }

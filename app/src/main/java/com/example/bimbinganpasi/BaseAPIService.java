@@ -228,6 +228,10 @@ public interface BaseAPIService {
     Call<MessageResponse> deleteLogbook(@Field("no_logbook") int no);
 
     @FormUrlEncoded
+    @POST("include/konfirmasiLogbook.php")
+    Call<MessageResponse> konfirmasiLogbook(@Field("no") int no);
+
+    @FormUrlEncoded
     @POST("include/getMatkulMhs.php")
     Call<MatkulMhsResponse> getMatkulMhs(@Field("no") String no,
                                          @Field("semester") int semester);

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,7 +46,7 @@ public class Form_Mhs_05 extends AppCompatActivity {
     FloatingActionButton fab_add;
     public static Activity Form_Mhs_05;
 
-    int [] no_list;
+    int [] no_list,status_list;
     String [] materi_list,tanggal_list,semester_list;
 
     @Override
@@ -92,13 +93,14 @@ public class Form_Mhs_05 extends AppCompatActivity {
                     materi_list = new String[list.size()];
                     tanggal_list = new String[list.size()];
                     semester_list = new String[list.size()];
+                    status_list = new int[list.size()];
                     for (int i =0;i<list.size();i++) {
                         no_list[i] = list.get(i).getNo();
                         materi_list[i] = list.get(i).getMateri();
                         tanggal_list[i] = list.get(i).getTanggal();
                         semester_list[i]  = String.valueOf(list.get(i).getSemester());
+                        status_list[i] = list.get(i).getStatus();
                     }
-
                     ArrayList data = new ArrayList<DataNote>();
                     for (int i = 0; i < list.size(); i++)
                     {
@@ -108,13 +110,13 @@ public class Form_Mhs_05 extends AppCompatActivity {
                                                 no_list[i],
                                                 materi_list[i],
                                                 tanggal_list[i],
-                                                semester_list[i]
+                                                semester_list[i],
+                                                status_list[i]
                                         ));
                     }
 
                     mListadapter = new ListAdapter(data);
                     listview.setAdapter(mListadapter);
-
                 }
             }
             @Override
@@ -128,10 +130,9 @@ public class Form_Mhs_05 extends AppCompatActivity {
     public void checkUserType(){
         if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
             initListView(String.valueOf(mPrefs.getUserID()));
-            fab_add.hide();
-
         } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
             initListView(String.valueOf(mPrefs.getSelectedUserId()));
+            fab_add.hide();
         }
     }
 
@@ -149,6 +150,29 @@ public class Form_Mhs_05 extends AppCompatActivity {
                     startActivity(i);
                 } else {
                     Toast.makeText(mContext, "Gagal menghapus Portofolio", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
+                Toast.makeText(mContext, "Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void konfirmasiLogbook(int no_logbook){
+        Call<MessageResponse> konfirmasiLogbook = mApiService.konfirmasiLogbook(
+                no_logbook
+        );
+        konfirmasiLogbook.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(mContext, "Logbook telah diACC", Toast.LENGTH_SHORT).show();
+                    finish();
+                    Intent i = new Intent(getBaseContext(),Form_Mhs_05.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(mContext, "Logbook gagal diACC", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -198,13 +222,52 @@ public class Form_Mhs_05 extends AppCompatActivity {
         public void onBindViewHolder(ListAdapter.ViewHolder holder, final int position)
         {
             if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+
+            } else {
                 holder.imageViewDelete.setVisibility(View.GONE);
+                if (dataList.get(position).getStatus() == 0){
+                    holder.itemView.setOnClickListener(new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v)
+                        {
+                            new AlertDialog.Builder(mContext)
+                                    .setTitle("ACC Logbook")
+                                    .setMessage("Are you sure you want to ACC this Logbook?")
+
+                                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                                    // The dialog is automatically dismissed when a dialog button is clicked.
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            // Continue with delete operation
+                                            konfirmasiLogbook(dataList.get(position).getNo());
+                                        }
+                                    })
+
+                                    // A null listener allows the button to dismiss the dialog and take no further action.
+                                    .setNegativeButton(android.R.string.no, null)
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
+                        }
+                    });
+                } else {
+                    
+                }
+            }
+            if (dataList.get(position).getStatus() == 0){
+                holder.textViewMateri.setTextColor(Color.rgb(255,0,0));
+                holder.textViewTanggal.setTextColor(Color.rgb(255,0,0));
+                holder.textViewSemester.setTextColor(Color.rgb(255,0,0));
+            } else {
+                holder.textViewMateri.setTextColor(Color.rgb(0,0,0));
+                holder.textViewTanggal.setTextColor(Color.rgb(0,87,75));
+                holder.textViewSemester.setTextColor(Color.rgb(0,87,75));
             }
             holder.textViewMateri.setText(dataList.get(position).getMateri());
             holder.textViewTanggal.setText(dataList.get(position).getTanggal());
             holder.textViewSemester.setText(dataList.get(position).getSemester());
             holder.imageViewDelete.setOnClickListener(new View.OnClickListener()
-        {
+            {
             @Override
             public void onClick(View v)
             {
@@ -225,8 +288,7 @@ public class Form_Mhs_05 extends AppCompatActivity {
                         .setNegativeButton(android.R.string.no, null)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
-            }
-        });
+            }});
         }
 
         @Override
