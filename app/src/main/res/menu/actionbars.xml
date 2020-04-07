@@ -3,9 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
     <item
-        android:id="@+id/chgpassword"  app:showAsAction="never" android:title="Change Password">
+        android:id="@+id/notif" android:icon="@drawable/ic_menu_notifications" app:showAsAction="always" android:title="Notification">
     </item>
     <item
-        android:id="@+id/exit"  app:showAsAction="never" android:title="Logout">
+        android:id="@+id/chgpassword" android:icon="@drawable/ic_vpn_key_black_24dp" app:showAsAction="never" android:title="Change Password">
+    </item>
+    <item
+        android:id="@+id/exit" android:icon="@drawable/ic_power" app:showAsAction="never" android:title="Logout">
     </item>
 </menu>

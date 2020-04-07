@@ -2,6 +2,7 @@ package com.example.bimbinganpasi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,9 +10,11 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Shader;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bimbinganpasi.Data.Image;
+import com.example.bimbinganpasi.Data.JumlahNotif;
 import com.example.bimbinganpasi.Data.Mahasiswa;
+import com.example.bimbinganpasi.Data.MessageResponse;
 import com.example.bimbinganpasi.Data.MhsBimbinganResponse;
 import com.example.bimbinganpasi.Data.UserDataResponse;
 import com.example.bimbinganpasi.Form_Menu.Adapter.DataNote;
@@ -41,12 +46,14 @@ public class Form_Mhs_Menu extends AppCompatActivity {
     private Button Btn_F0,Btn_F1,Btn_F2,Btn_F3,Btn_F4,Btn_F5;
     private ImageView IV_mhs;
     private boolean isLogin;
+    public static Activity Form_Mhs_Menu;
+    private boolean isStarted = false;
     PreferencesHelper mPrefs;
     BaseAPIService mApiService;
     Context mContext;
     Menu myMenu;
 
-    int no_id,semester;
+    int no_id,semester,newNotif;
     String nama,nim,kat_sks,kat_ipk;
 
     @Override
@@ -54,7 +61,10 @@ public class Form_Mhs_Menu extends AppCompatActivity {
         mPrefs = ((BimbPA) getApplication()).getPrefs();
         isLogin = mPrefs.getUserisSignIn();
         super.onCreate(savedInstanceState);
-            setContentView(R.layout.form_mhs_menu);
+        mContext = this;
+        Form_Mhs_Menu = this;
+        setContentView(R.layout.form_mhs_menu);
+
 
             IV_mhs = (ImageView) findViewById(R.id.ImageUser);
             TV_nama = (TextView) findViewById(R.id.NamaUser);
@@ -116,6 +126,7 @@ public class Form_Mhs_Menu extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         mApiService = UtilsApi.getClient().create(BaseAPIService.class);
+        invalidateOptionsMenu();
         checkUserType();
     }
 
@@ -149,8 +160,43 @@ public class Form_Mhs_Menu extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.actionbars, menu);
         if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+            menu.findItem( R.id.notif ).setVisible( false );
             menu.findItem( R.id.chgpassword ).setVisible( false );
             menu.findItem( R.id.exit ).setVisible( false );
+        } else {
+            requestNotif(new ApiCallback(){
+                @Override
+                public void onSuccess(Integer result){
+                    newNotif = result;
+                    MenuItem item = menu.findItem(R.id.notif);
+                    LayerDrawable icon = (LayerDrawable) item.getIcon();
+                    Utils2.setBadgeCount(mContext, icon, newNotif);
+                }
+            });
+            // Update LayerDrawable's BadgeDrawable
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+            menu.findItem( R.id.chgpassword ).setVisible( false );
+            menu.findItem( R.id.exit ).setVisible( false );
+        } else {
+            requestNotif(new ApiCallback(){
+                @Override
+                public void onSuccess(Integer result){
+                    newNotif = result;
+
+                        MenuItem item = menu.findItem(R.id.notif);
+                        LayerDrawable icon = (LayerDrawable) item.getIcon();
+                        Utils2.setBadgeCount(mContext, icon, newNotif);
+
+                }
+            });
+            // Update LayerDrawable's BadgeDrawable
         }
         return true;
     }
@@ -160,6 +206,7 @@ public class Form_Mhs_Menu extends AppCompatActivity {
         case R.id.exit:
             //add the function to perform here
             mPrefs.setUserIsSignIn(false);
+            delFCMKey(mPrefs.getUserID(),mPrefs.getUserFCM());
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
@@ -168,9 +215,14 @@ public class Form_Mhs_Menu extends AppCompatActivity {
             Intent intent2 = new Intent(this, Form_Change_Password.class);
             startActivity(intent2);
             return(true);
+        case R.id.notif:
+            Intent intent3 = new Intent(this, Form_User_Notif.class);
+            startActivity(intent3);
+            return(true);
     }
         return(super.onOptionsItemSelected(item));
     }
+
 
     public void requestData(String userID){
         Call<UserDataResponse> loggedinuserrequest = mApiService.loggedinuserrequest(
@@ -188,6 +240,12 @@ public class Form_Mhs_Menu extends AppCompatActivity {
                     mPrefs.setUserSmt(semester);
                     TV_nama.setText(nama);
                     TV_no_induk.setText(no_induk);
+                    if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")) {
+                        String no_dosen_id = response.body().getNo_dosen_id();
+                        mPrefs.setDosenNo(no_dosen_id);
+                    } else{
+
+                    }
                 }
             }
                     @Override
@@ -196,6 +254,48 @@ public class Form_Mhs_Menu extends AppCompatActivity {
                     }
                 });
     }
+
+    public void requestNotif(final ApiCallback callback){
+        Call<JumlahNotif> call = mApiService.getNewNotif(
+                mPrefs.getUserID()
+        );
+        call.enqueue(new Callback<JumlahNotif>() {
+            // If success
+            @Override
+            public void onResponse(Call<JumlahNotif>call, Response<JumlahNotif> response) {
+                Integer list = response.body().getNotif();
+                callback.onSuccess(list); // pass the list
+            }
+            // If failed
+            @Override
+            public void onFailure(Call<JumlahNotif>call, Throwable t) {
+                // Log error here since request failed
+            }
+        });
+    }
+
+    public interface ApiCallback{
+        void onSuccess(Integer result);
+    }
+
+    public void delFCMKey(int userID, String regID){
+        Call<MessageResponse> delFCMKey = mApiService.delFCMKey(
+                userID,
+                regID);
+        delFCMKey.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                Boolean iserror_ = response.body().getError();
+                if (iserror_.equals("false")) {
+                }
+            }
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
+                Log.e("debug", "onFailure: ERROR > " + t.toString());
+            }
+        });
+    }
+
 
     public void checkMhsKat(String UserId){
         Call<MhsBimbinganResponse> checkMhsKat = mApiService.checkMhsKat(

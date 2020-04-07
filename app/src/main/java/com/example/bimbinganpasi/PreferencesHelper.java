@@ -14,10 +14,12 @@ public class PreferencesHelper {
     private static final String PREFERENCES_KEY_USER_IS_SIGN_IN = "PREFERENCES_KEY_USER_IS_SIGN_IN";
     private static final String PREFERENCES_KEY_USER_ID = "PREFERENCES_KEY_USER_ID";
     private static final String PREFERENCES_KEY_SELECTED_USER_ID = "PREFERENCES_KEY_SELECTED_USER_ID";
+    private static final String PREFERENCES_KEY_DOSEN_NO = "PREFERENCES_KEY_DOSEN_NO";
     private static final String PREFERENCES_KEY_USER_NAME = "PREFERENCES_KEY_USER_NAME";
     private static final String PREFERENCES_KEY_USER_NO = "PREFERENCES_KEY_USER_NO";
     private static final String PREFERENCES_KEY_USER_SEMESTER = "PREFERENCES_KEY_USER_SEMESTER";
     private static final String PREFERENCES_KEY_USER_TYPE = "PREFERENCES_KEY_USER_TYPE";
+    private static final String PREFERENCES_KEY_USER_FCM= "PREFERENCES_KEY_USER_FCM";
 
     public PreferencesHelper(Context context) {
         this.mPrefs = context.getApplicationContext().getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
@@ -37,6 +39,14 @@ public class PreferencesHelper {
 
     public Integer getSelectedUserId(){
         return mPrefs.getInt(PREFERENCES_KEY_SELECTED_USER_ID, 0);
+    }
+
+    public void setDosenNo(String dosenNo){
+        mPrefs.edit().putString(PREFERENCES_KEY_DOSEN_NO,  dosenNo).apply();
+    }
+
+    public String getDosenNo(){
+        return mPrefs.getString(PREFERENCES_KEY_DOSEN_NO, "");
     }
 
     public void setUserName(String userName){
@@ -77,5 +87,13 @@ public class PreferencesHelper {
 
     public boolean getUserisSignIn(){
         return mPrefs.getBoolean(PREFERENCES_KEY_USER_IS_SIGN_IN, false);
+    }
+
+    public void setUserFCM(String userFCM){
+        mPrefs.edit().putString(PREFERENCES_KEY_USER_FCM,  userFCM).apply();
+    }
+
+    public String getUserFCM(){
+        return mPrefs.getString(PREFERENCES_KEY_USER_FCM, "");
     }
 }

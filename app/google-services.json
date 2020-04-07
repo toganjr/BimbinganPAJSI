@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "409485220099",
+    "firebase_url": "https://fcmbimbinganpajsi.firebaseio.com",
+    "project_id": "fcmbimbinganpajsi",
+    "storage_bucket": "fcmbimbinganpajsi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409485220099:android:0c76b8d14e36f2e9807136",
+        "android_client_info": {
+          "package_name": "com.example.bimbinganpasi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409485220099-be94ha3054v9evsdvarpd6k05ho5j6tt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bimbinganpasi",
+            "certificate_hash": "dcf86ae7a6ba690e0f9da9845557c273b3545687"
+          }
+        },
+        {
+          "client_id": "409485220099-e9264l4lkq1bcdtrk66biblqq2d87ihb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJVRm2eJ9VBjwjj5lPDj1FlAzuZbhnwVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409485220099-e9264l4lkq1bcdtrk66biblqq2d87ihb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

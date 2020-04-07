@@ -14,6 +14,9 @@ public class tambahMatkulResponse {
     @SerializedName("msg")
     @Expose
     private String msg;
+    @SerializedName("error_msg")
+    @Expose
+    private String error_msg;
 
     public Boolean getError() {
         return error;
@@ -31,12 +34,16 @@ public class tambahMatkulResponse {
         this.uid = uid;
     }
 
-    public String getMsg() {
-        return msg;
-    }
+    public String getMsg() { return msg; }
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public String getError_msg() { return error_msg; }
+
+    public void setError_msg(String error_msg) {
+        this.error_msg = error_msg;
     }
 
 }

@@ -34,6 +34,7 @@ public class Form_Change_Password extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_change_password);
+        Form_Mhs_Menu.Form_Mhs_Menu.invalidateOptionsMenu();
 
         mApiService = UtilsApi.getClient().create(BaseAPIService.class);
         mPrefs = ((BimbPA) getApplication()).getPrefs();

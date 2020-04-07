@@ -34,6 +34,9 @@
             android:name=".Form_Mhs_00"
             android:launchMode="singleInstance"></activity>
         <activity android:name=".Form_Change_Password"/>
+        <activity android:name=".Form_User_Notif"/>
+        <activity android:name=".Form_Dosen_Notif_Single"/>
+        <activity android:name=".Form_Dosen_Notif_All"/>
         <activity android:name=".Form_Mhs_00_edit" />
         <activity android:name=".Form_Mhs_00_Photo" />
         <activity android:name=".Form_Mhs_01" />
@@ -45,6 +48,7 @@
         <activity android:name=".Form_Mhs_02_tambah"/>
         <activity android:name=".Form_Mhs_02_tambahcatatan"/>
         <activity android:name=".Form_Mhs_02_Detail"/>
+        <activity android:name=".Form_Mhs_02_inputnilai"/>
         <activity android:name=".Form_Mhs_03" />
         <activity android:name=".Form_Mhs_03_tambah"/>
         <activity android:name=".Form_Mhs_03_tambahkomentar"/>
@@ -52,6 +56,17 @@
         <activity android:name=".Form_Mhs_04_tambahcatatan"/>
         <activity android:name=".Form_Mhs_05" />
         <activity android:name=".Form_Mhs_05_tambah"/>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_notif" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming notification message. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/orange" />
+        <meta-data
+            android:name="com.google.firebase.messaging."
+            android:resource="@drawable/ic_stat_notif" />
     </application>
 
-</manifest>
+    </manifest>

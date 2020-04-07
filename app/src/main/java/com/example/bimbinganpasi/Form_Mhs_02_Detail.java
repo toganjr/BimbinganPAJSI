@@ -1,6 +1,8 @@
 package com.example.bimbinganpasi;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,8 +27,9 @@ public class Form_Mhs_02_Detail extends AppCompatActivity {
     BaseAPIService mApiService;
 
     private String no_matkul,nama_matkul,sks_matkul,prasyarat_matkul,target_matkul,realisasi_matkul,nxk_matkul;
+    private int semester;
     private TextView tv_nama_matkul,tv_sks_matkul,tv_prasyarat_matkul,tv_target_matkul,tv_realisasi_matkul,tv_nxk_matkul;
-    private Button btn_delete;
+    private Button btn_delete,btn_tambahnilai;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class Form_Mhs_02_Detail extends AppCompatActivity {
         tv_nxk_matkul = (TextView) findViewById(R.id.TVF2_detail_nxkmatkul);
 
         btn_delete = (Button) findViewById(R.id.BtnF2_detail_hapusmatkul);
+        btn_tambahnilai = (Button) findViewById(R.id.BtnF2_detail_tambahnilai);
 
         checkTypeUser();
         receiveData();
@@ -56,12 +60,42 @@ public class Form_Mhs_02_Detail extends AppCompatActivity {
         tv_realisasi_matkul.setText(realisasi_matkul);
         tv_nxk_matkul.setText(nxk_matkul);
 
-        rmvBtnDelete();
+        rmvBtnDeleteInput();
 
         btn_delete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                deleteMatkul(Integer.valueOf(no_matkul));
+                new AlertDialog.Builder(mContext)
+                        .setTitle("Delete Courses")
+                        .setMessage("Are you sure you want to delete this Courses ?")
+
+                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+                                deleteMatkul(Integer.valueOf(no_matkul));
+                            }
+                        })
+
+                        // A null listener allows the button to dismiss the dialog and take no further action.
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+            }
+        }
+        );
+        btn_tambahnilai.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getBaseContext(),Form_Mhs_02_inputnilai.class);
+                i.putExtra("no_matkul",no_matkul);
+                i.putExtra("nama_matkul", nama_matkul);
+                i.putExtra("semester", semester);
+                i.putExtra("sks_matkul", sks_matkul);
+                startActivity(i);
+                finish();
             }
         }
         );
@@ -78,6 +112,7 @@ public class Form_Mhs_02_Detail extends AppCompatActivity {
         target_matkul = i.getStringExtra("target_matkul");
         realisasi_matkul = i.getStringExtra("realisasi_matkul");
         nxk_matkul = i.getStringExtra("nxk_matkul");
+        semester = i.getIntExtra("semester",0);
     }
 
     public void deleteMatkul(int no_matkul){
@@ -107,12 +142,14 @@ public class Form_Mhs_02_Detail extends AppCompatActivity {
     public void checkTypeUser(){
         if(mPrefs.getUserType().equalsIgnoreCase("dosen")){
             btn_delete.setVisibility(View.GONE);
+            btn_tambahnilai.setVisibility(View.GONE);
         }
     }
 
-    public void rmvBtnDelete(){
+    public void rmvBtnDeleteInput(){
         if(!tv_realisasi_matkul.getText().toString().equals("")){
             btn_delete.setVisibility(View.GONE);
+            btn_tambahnilai.setVisibility(View.GONE);
         }
     }
 

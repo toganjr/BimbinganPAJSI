@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.bimbinganpasi.Data.MessageResponse;
+import com.example.bimbinganpasi.Data.UserDataResponse;
 import com.example.bimbinganpasi.Data.UserIDResponse;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,14 +71,22 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(mContext, "BERHASIL LOGIN", Toast.LENGTH_SHORT).show();
                     Integer no_user_id = response.body().getNo_user_id();
                     String utipe = response.body().getUtipe();
+                    String nama = response.body().getNama();
                     mPrefs.setUserID(no_user_id);
                     mPrefs.setUserIsSignIn(true);
                     mPrefs.setUserType(utipe);
+                    mPrefs.setUserName(nama);
                     if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
+                        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+                        mPrefs.setUserFCM(refreshedToken);
+                        sendFCMKey(mPrefs.getUserID(),mPrefs.getUserFCM());
                         Intent intent = new Intent(mContext, Form_Mhs_Menu.class);
                         startActivity(intent);
                         finish();
                     } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
+                        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+                        mPrefs.setUserFCM(refreshedToken);
+                        sendFCMKey(mPrefs.getUserID(),mPrefs.getUserFCM());
                         Intent intent = new Intent(mContext, Form_Dosen_Menu.class);
                         startActivity(intent);
                         finish();
@@ -91,6 +102,24 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<UserIDResponse> call, Throwable t) {
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
                 loading.dismiss();
+            }
+        });
+    }
+
+    public void sendFCMKey(int userID, String regID){
+        Call<MessageResponse> sendFCMKey = mApiService.sendFCMKey(
+                userID,
+                regID);
+        sendFCMKey.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                Boolean iserror_ = response.body().getError();
+                if (iserror_.equals("false")) {
+                }
+            }
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
+                Log.e("debug", "onFailure: ERROR > " + t.toString());
             }
         });
     }

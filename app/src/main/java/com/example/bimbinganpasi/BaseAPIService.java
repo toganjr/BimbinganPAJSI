@@ -7,6 +7,7 @@ import com.example.bimbinganpasi.Data.EvalMhsResponse;
 import com.example.bimbinganpasi.Data.EvalParaResponse;
 import com.example.bimbinganpasi.Data.IPKResponse;
 import com.example.bimbinganpasi.Data.IpListResponse;
+import com.example.bimbinganpasi.Data.JumlahNotif;
 import com.example.bimbinganpasi.Data.KomenPortoResponse;
 import com.example.bimbinganpasi.Data.ListForm4Response;
 import com.example.bimbinganpasi.Data.LogbookMhsResponse;
@@ -15,6 +16,7 @@ import com.example.bimbinganpasi.Data.MatkulMhsResponse;
 import com.example.bimbinganpasi.Data.MessageResponse;
 import com.example.bimbinganpasi.Data.MhsBimbinganResponse;
 import com.example.bimbinganpasi.Data.MilestoneDataResponse;
+import com.example.bimbinganpasi.Data.NotifResponse;
 import com.example.bimbinganpasi.Data.Porto_Mhs;
 import com.example.bimbinganpasi.Data.PortofolioMhsResponse;
 import com.example.bimbinganpasi.Data.UserDataResponse;
@@ -291,6 +293,66 @@ public interface BaseAPIService {
     @FormUrlEncoded
     @POST("include/getLogbookMhs.php")
     Call<LogbookMhsResponse> getLogbookMhs(@Field("no") String no);
+
+    @FormUrlEncoded
+    @POST("include/tambahNilaiIP.php")
+    Call<MessageResponse> tambahNilaiIP(@Field("no") String no,
+                                        @Field("nilai") String nilai,
+                                        @Field("sks") String sks,
+                                        @Field("semester") int semester
+                                        );
+
+    @FormUrlEncoded
+    @POST("include/tambahNilaiIPK.php")
+    Call<MessageResponse> tambahNilaiIPK(@Field("no") String no,
+                                         @Field("nilai") String nilai,
+                                         @Field("sks") String sks,
+                                         @Field("semester") int semester);
+
+    @FormUrlEncoded
+    @POST("include/updateNilaiMatkul.php")
+    Call<MessageResponse> updateNilaiMatkul(@Field("no") String no,
+                                         @Field("nilai") String nilai,
+                                         @Field("nxk") String nxk);
+
+    @FormUrlEncoded
+    @POST("include/gcm.php?shareRegId=1")
+    Call<MessageResponse> sendFCMKey(@Field("userId") int userId,
+                                     @Field("regId") String regId);
+
+    @FormUrlEncoded
+    @POST("include/gcm.php?deleteRegId=1")
+    Call<MessageResponse> delFCMKey(@Field("userId") int userId,
+                                    @Field("regId") String regId);
+
+    @FormUrlEncoded
+    @POST("include/gcm.php?push=1")
+    Call<MessageResponse> pushFCMlecture(@Field("dari") String dari,
+                                         @Field("message") String message);
+
+    @FormUrlEncoded
+    @POST("include/gcm.php?push=2")
+    Call<MessageResponse> pushFCMmhs(@Field("dari") String dari,
+                                     @Field("message") String message);
+
+    @FormUrlEncoded
+    @POST("include/gcm.php?push=3")
+    Call<MessageResponse> pushFCMsingle(@Field("user_id") int user_id,
+                                        @Field("dari") String dari,
+                                        @Field("message") String message);
+
+    @FormUrlEncoded
+    @POST("include/getNotifUser.php")
+    Call<NotifResponse> getNotifUser(@Field("no") int no);
+
+    @FormUrlEncoded
+    @POST("include/getNewNotif.php")
+    Call<JumlahNotif> getNewNotif(@Field("no") int no);
+
+    @FormUrlEncoded
+    @POST("include/updateNotifStats.php")
+    Call<MessageResponse> updateNotifStats(@Field("no") int no);
+
 
     // Fungsi ini untuk memanggil API http://10.0.2.2/mahasiswa/register.php
   // @FormUrlEncoded

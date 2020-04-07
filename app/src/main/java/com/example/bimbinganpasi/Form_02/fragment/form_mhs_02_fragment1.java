@@ -628,6 +628,7 @@ public class form_mhs_02_fragment1 extends Fragment {
             }
         }
     }
+
     public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>
     {
         private ArrayList<DataNote> dataList;
@@ -665,7 +666,7 @@ public class form_mhs_02_fragment1 extends Fragment {
 
             holder.textViewMatkul.setText(dataList.get(position).getMatkul_list());
             holder.textViewSks.setText(dataList.get(position).getSks_list()+" SKS");
-            if (Integer.parseInt(mPrefs.getUserSmt()) >= 1){
+            if (!realisasi_list[position].equalsIgnoreCase("")){
                 holder.textViewMatkul.setTextColor(Color.rgb(0,87,75));
             } else {
                 holder.textViewMatkul.setTextColor(Color.rgb(255,0,0));
@@ -685,6 +686,7 @@ public class form_mhs_02_fragment1 extends Fragment {
                     i.putExtra("target_matkul", target_list[position]);
                     i.putExtra("realisasi_matkul", realisasi_list[position]);
                     i.putExtra("nxk_matkul", nxk_list[position]);
+                    i.putExtra("semester", 1);
                     getActivity().startActivity(i);
                 }
             });
@@ -733,7 +735,7 @@ public class form_mhs_02_fragment1 extends Fragment {
         {
             holder.textViewMatkul.setText(dataList.get(position).getMatkul_list());
             holder.textViewSks.setText(dataList.get(position).getSks_list()+" SKS");
-            if (Integer.parseInt(mPrefs.getUserSmt()) >= 2){
+            if (!realisasi_list2[position].equalsIgnoreCase("")){
                 holder.textViewMatkul.setTextColor(Color.rgb(0,87,75));
             } else {
                 holder.textViewMatkul.setTextColor(Color.rgb(255,0,0));
@@ -752,6 +754,7 @@ public class form_mhs_02_fragment1 extends Fragment {
                     i.putExtra("target_matkul", target_list2[position]);
                     i.putExtra("realisasi_matkul", realisasi_list2[position]);
                     i.putExtra("nxk_matkul", nxk_list2[position]);
+                    i.putExtra("semester", 2);
                     getActivity().startActivity(i);
                 }
             });

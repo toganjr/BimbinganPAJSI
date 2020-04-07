@@ -27,6 +27,9 @@ public class UserDataResponse implements Serializable {
     @SerializedName("dosen_pa")
     @Expose
     private String dosen_pa;
+    @SerializedName("no_dosen_id")
+    @Expose
+    private String no_dosen_id;
     @SerializedName("semester")
     @Expose
     private String semester;
@@ -121,6 +124,12 @@ public class UserDataResponse implements Serializable {
     public void setDosen_pa(String dosen_pa) {
         this.dosen_pa = dosen_pa;
     }
+    public String getNo_dosen_id() {
+        return no_dosen_id;
+    }
+    public void setNo_dosen_id(String no_dosen_id) {
+        this.no_dosen_id = no_dosen_id;
+    }
     public String getSemester() {
         return semester;
     }
@@ -195,18 +204,14 @@ public class UserDataResponse implements Serializable {
     public void setAlamat_ortu(String alamat_ortu) {
         this.alamat_ortu = alamat_ortu;
     }
-    public String getEmail_ortu() {
-        return email_ortu;
-    }
+    public String getEmail_ortu() { return email_ortu; }
     public void setEmail_ortu(String email_ortu) {
         this.email_ortu = email_ortu;
     }
     public String getMobilephone_ortu() {
         return mobilephone_ortu;
     }
-    public void setMobilephone_ortu(String mobilephone_ortu) {
-        this.mobilephone_ortu = mobilephone_ortu;
-    }
+    public void setMobilephone_ortu(String mobilephone_ortu) { this.mobilephone_ortu = mobilephone_ortu; }
     public String getId_fb() {
         return id_fb;
     }
@@ -232,7 +237,5 @@ public class UserDataResponse implements Serializable {
         this.numb_wa = numb_wa;
     }
 
-    public List<Image> getImages() {
-        return images;
-    }
+    public List<Image> getImages() { return images; }
 }

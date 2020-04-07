@@ -62,8 +62,19 @@ public class Form_Mhs_02_tambah extends AppCompatActivity {
                                             if (setTarget.getText().toString().equals("")){
                                                 Toast.makeText(mContext, "Masukkan Target Nilai", Toast.LENGTH_SHORT).show();
                                             } else {
-                                                Form_Mhs_02.Form_Mhs_02.finish();
-                                                tambahMatkul(mPrefs.getUserID(), no_matkul, setTarget.getText().toString(), semester_mhs);
+                                                if (setTarget.getText().toString().equalsIgnoreCase("A") ||
+                                                        setTarget.getText().toString().equalsIgnoreCase("B+") ||
+                                                        setTarget.getText().toString().equalsIgnoreCase("B") ||
+                                                        setTarget.getText().toString().equalsIgnoreCase("C+") ||
+                                                        setTarget.getText().toString().equalsIgnoreCase("C") ||
+                                                        setTarget.getText().toString().equalsIgnoreCase("D+") ||
+                                                        setTarget.getText().toString().equalsIgnoreCase("D") ||
+                                                        setTarget.getText().toString().equalsIgnoreCase("E")) {
+                                                    Form_Mhs_02.Form_Mhs_02.finish();
+                                                    tambahMatkul(mPrefs.getUserID(), no_matkul, setTarget.getText().toString(), semester_mhs);
+                                                } else {
+                                                    Toast.makeText(mContext, "Format nilai yang anda masukkan salah", Toast.LENGTH_SHORT).show();
+                                                }
                                             }
                                         }
                                     }

@@ -1,6 +1,8 @@
 package com.example.bimbinganpasi.Form_04.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -214,6 +216,16 @@ public class form_mhs_04_fragment2 extends Fragment {
                 @Override
                 public void onClick(View v)
                 {
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Catatan "+dataList.get(position).getSemester())
+                            .setMessage(dataList.get(position).getCatatan())
+
+                            // Specifying a listener allows you to take an action before dismissing the dialog.
+                            // The dialog is automatically dismissed when a dialog button is clicked.
+                            // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton("Close", null)
+                            .setIcon(R.drawable.ic_speaker_notes_black_24dp)
+                            .show();
                 }
             });
             holder.btnCatatan.setOnClickListener(new View.OnClickListener()

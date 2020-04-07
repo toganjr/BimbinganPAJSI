@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +21,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bimbinganpasi.Data.JumlahNotif;
 import com.example.bimbinganpasi.Data.Mahasiswa;
+import com.example.bimbinganpasi.Data.MessageResponse;
 import com.example.bimbinganpasi.Data.MhsBimbinganResponse;
+import com.example.bimbinganpasi.Data.Notif;
 import com.example.bimbinganpasi.Data.Porto_Mhs;
 import com.example.bimbinganpasi.Data.PortofolioMhsResponse;
 import com.example.bimbinganpasi.Data.UserDataResponse;
@@ -36,11 +41,13 @@ import retrofit2.Response;
 public class Form_Dosen_Menu extends AppCompatActivity {
     private TextView TV_nama,TV_no_induk;
     private RecyclerView listview;
+    public static Activity Form_Dosen_Menu;
     PreferencesHelper mPrefs;
     BaseAPIService mApiService;
     Context mContext;
     ListAdapter mListadapter;
 
+    int newNotif;
     int [] no_id,semester;
     String [] nama,nim,kat_sks,kat_ipk;
 
@@ -52,6 +59,7 @@ public class Form_Dosen_Menu extends AppCompatActivity {
         mApiService = UtilsApi.getClient().create(BaseAPIService.class);
         mPrefs = ((BimbPA) getApplication()).getPrefs();
         mContext = this;
+        Form_Dosen_Menu = this;
 
         TV_nama = (TextView) findViewById(R.id.NamaDosen);
         TV_no_induk = (TextView) findViewById(R.id.NIDosen);
@@ -69,12 +77,38 @@ public class Form_Dosen_Menu extends AppCompatActivity {
         super.onResume();
         mApiService = UtilsApi.getClient().create(BaseAPIService.class);
         requestData();
+        invalidateOptionsMenu();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.actionbars, menu);
+        // Update LayerDrawable's BadgeDrawable
+        requestNotif(new Form_Mhs_Menu.ApiCallback(){
+            @Override
+            public void onSuccess(Integer result){
+                newNotif = result;
+                MenuItem item = menu.findItem(R.id.notif);
+                LayerDrawable icon = (LayerDrawable) item.getIcon();
+                Utils2.setBadgeCount(mContext, icon, newNotif);
+            }
+        });
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        requestNotif(new Form_Mhs_Menu.ApiCallback(){
+            @Override
+            public void onSuccess(Integer result){
+                newNotif = result;
+                MenuItem item = menu.findItem(R.id.notif);
+                LayerDrawable icon = (LayerDrawable) item.getIcon();
+                Utils2.setBadgeCount(mContext, icon, newNotif);
+            }
+        });
+            // Update LayerDrawable's BadgeDrawable
         return true;
     }
 
@@ -83,6 +117,7 @@ public class Form_Dosen_Menu extends AppCompatActivity {
         case R.id.exit:
             //add the function to perform here
             mPrefs.setUserIsSignIn(false);
+            delFCMKey(mPrefs.getUserID(),mPrefs.getUserFCM());
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
@@ -90,6 +125,10 @@ public class Form_Dosen_Menu extends AppCompatActivity {
         case R.id.chgpassword:
             Intent intent2 = new Intent(this, Form_Change_Password.class);
             startActivity(intent2);
+            return(true);
+        case R.id.notif:
+            Intent intent3 = new Intent(this, Form_User_Notif.class);
+            startActivity(intent3);
             return(true);
     }
         return(super.onOptionsItemSelected(item));
@@ -113,6 +152,43 @@ public class Form_Dosen_Menu extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<UserDataResponse> call, Throwable t) {
+                Log.e("debug", "onFailure: ERROR > " + t.toString());
+            }
+        });
+    }
+
+    public void requestNotif(final Form_Mhs_Menu.ApiCallback callback){
+        Call<JumlahNotif> call = mApiService.getNewNotif(
+                mPrefs.getUserID()
+        );
+        call.enqueue(new Callback<JumlahNotif>() {
+            // If success
+            @Override
+            public void onResponse(Call<JumlahNotif>call, Response<JumlahNotif> response) {
+                Integer list = response.body().getNotif();
+                callback.onSuccess(list); // pass the list
+            }
+            // If failed
+            @Override
+            public void onFailure(Call<JumlahNotif>call, Throwable t) {
+                // Log error here since request failed
+            }
+        });
+    }
+
+    public void delFCMKey(int userID, String regID){
+        Call<MessageResponse> delFCMKey = mApiService.delFCMKey(
+                userID,
+                regID);
+        delFCMKey.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                Boolean iserror_ = response.body().getError();
+                if (iserror_.equals("false")) {
+                }
+            }
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
             }
         });
