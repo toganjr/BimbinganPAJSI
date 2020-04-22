@@ -263,7 +263,18 @@ public class Form_Mhs_03 extends AppCompatActivity {
             {
                 @Override
                 public void onClick(View v)
-                { }
+                {
+                    new AlertDialog.Builder(mContext)
+                            .setTitle("Komentar")
+                            .setMessage(dataList.get(position).getKomentar())
+
+                            // Specifying a listener allows you to take an action before dismissing the dialog.
+                            // The dialog is automatically dismissed when a dialog button is clicked.
+                            // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton("Close", null)
+                            .setIcon(R.drawable.ic_speaker_notes_black_24dp)
+                            .show();
+                }
             });
         }
 

@@ -167,12 +167,12 @@ public class Form_Mhs_05 extends AppCompatActivity {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(mContext, "Logbook telah diACC", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Logbook telah disetujui", Toast.LENGTH_SHORT).show();
                     finish();
                     Intent i = new Intent(getBaseContext(),Form_Mhs_05.class);
                     startActivity(i);
                 } else {
-                    Toast.makeText(mContext, "Logbook gagal diACC", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Logbook gagal disetujui", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -232,8 +232,8 @@ public class Form_Mhs_05 extends AppCompatActivity {
                         public void onClick(View v)
                         {
                             new AlertDialog.Builder(mContext)
-                                    .setTitle("ACC Logbook")
-                                    .setMessage("Are you sure you want to ACC this Logbook?")
+                                    .setTitle("Accept Logbook")
+                                    .setMessage("Are you sure you want to accept this Logbook?")
 
                                     // Specifying a listener allows you to take an action before dismissing the dialog.
                                     // The dialog is automatically dismissed when a dialog button is clicked.
