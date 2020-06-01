@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="683.4802928084573" y="0.0">com.example.bimbinganpasi.BaseAPIService</node>
+    <node x="1496.8101541127655" y="299.0">com.example.bimbinganpasi.Form_Dosen_Notif_All</node>
+    <node x="813.6851541127655" y="727.0">com.example.bimbinganpasi.Form_Mhs_Menu</node>
+    <node x="848.4351541127655" y="846.0">com.example.bimbinganpasi.LoginActivity</node>
+    <node x="1122.8101541127655" y="299.0">com.example.bimbinganpasi.Form_Mhs_00_edit</node>
+    <node x="1054.681891025641" y="498.0">com.example.bimbinganpasi.Form_Mhs_00</node>
+    <node x="260.0625" y="498.0">com.example.bimbinganpasi.Form_Mhs_02</node>
+    <node x="586.0985576923076" y="498.0">com.example.bimbinganpasi.Form_Mhs_01</node>
+    <node x="1581.6226541127655" y="727.0">com.example.bimbinganpasi.Form_Dosen_Menu</node>
+    <node x="608.1358197709474" y="299.0">com.example.bimbinganpasi.Form_Mhs_01_edit0</node>
+    <node x="1302.8101541127655" y="299.0">com.example.bimbinganpasi.Form_Mhs_03_tambah</node>
+    <node x="423.625" y="498.0">com.example.bimbinganpasi.Form_Mhs_04</node>
+    <node x="1241.681891025641" y="498.0">com.example.bimbinganpasi.Form_Mhs_03</node>
+    <node x="867.681891025641" y="498.0">com.example.bimbinganpasi.Form_Mhs_05</node>
+    <node x="928.8101541127655" y="299.0">com.example.bimbinganpasi.Form_Mhs_05_tambah</node>
+    <node x="21.5" y="727.0">com.example.bimbinganpasi.Form_Mhs_02_inputnilai</node>
+    <node x="1422.056891025641" y="498.0">com.example.bimbinganpasi.Form_User_Notif</node>
+    <node x="386.07617975379117" y="727.0">com.example.bimbinganpasi.Form_Mhs_04_tambahcatatan</node>
+    <node x="88.51367975379117" y="846.0">com.example.bimbinganpasi.Form_Mhs_02_Detail</node>
+    <node x="1683.2476541127655" y="0.0">com.example.bimbinganpasi.PreferencesHelper</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_02_Detail" target="com.example.bimbinganpasi.Form_Mhs_02">
+      <point x="34.799999999999955" y="-14.5" />
+      <point x="210.31367975379112" y="806.0" />
+      <point x="322.5625" y="806.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_User_Notif" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-57.375" y="-14.5" />
+      <point x="1441.181891025641" y="358.0" />
+      <point x="907.3101541127655" y="358.0" />
+      <point x="907.3101541127655" y="149.0" />
+      <point x="781.5740428084573" y="149.0" />
+      <point x="25.09375" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_User_Notif" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="57.375" y="-14.5" />
+      <point x="1555.931891025641" y="478.0" />
+      <point x="1788.1851541127655" y="478.0" />
+      <point x="1788.1851541127655" y="249.0" />
+      <point x="1782.4039041127655" y="249.0" />
+      <point x="15.65625" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_00_edit" target="com.example.bimbinganpasi.Form_Mhs_00">
+      <point x="40.0" y="14.5" />
+      <point x="1242.8101541127655" y="428.0" />
+      <point x="1142.181891025641" y="428.0" />
+      <point x="25.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.LoginActivity" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="59.571428571428555" y="-14.5" />
+      <point x="977.506582684194" y="826.0" />
+      <point x="1992.5733197709474" y="826.0" />
+      <point x="1992.5733197709474" y="189.0" />
+      <point x="1845.0289041127655" y="189.0" />
+      <point x="78.28125" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_01_edit0" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="0.0" y="-14.5" />
+      <point x="691.6358197709474" y="219.0" />
+      <point x="745.0740428084573" y="219.0" />
+      <point x="-11.40625" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Dosen_Notif_All" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="0.0" y="-14.5" />
+      <point x="1590.8101541127655" y="59.0" />
+      <point x="822.6365428084573" y="59.0" />
+      <point x="66.15625" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_01_edit0" target="com.example.bimbinganpasi.Form_Mhs_Menu">
+      <point x="55.66666666666674" y="14.5" />
+      <point x="747.3024864376141" y="428.0" />
+      <point x="857.181891025641" y="428.0" />
+      <point x="857.181891025641" y="567.0" />
+      <point x="883.1851541127655" y="567.0" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_02_inputnilai" target="com.example.bimbinganpasi.Form_Mhs_02">
+      <point x="25.25" y="-14.5" />
+      <point x="147.75" y="667.0" />
+      <point x="280.89583333333326" y="667.0" />
+      <point x="-41.66666666666674" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_05" target="com.example.bimbinganpasi.Form_Mhs_05_tambah">
+      <point x="0.0" y="-14.5" />
+      <point x="930.181891025641" y="418.0" />
+      <point x="972.3101541127655" y="418.0" />
+      <point x="-43.5" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Dosen_Menu" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-57.375" y="-14.5" />
+      <point x="1600.7476541127655" y="557.0" />
+      <point x="785.6358197709474" y="557.0" />
+      <point x="785.6358197709474" y="219.0" />
+      <point x="749.6365428084573" y="219.0" />
+      <point x="-6.84375" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_05_tambah" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="1.1368683772161603E-13" y="-14.5" />
+      <point x="1015.8101541127655" y="119.0" />
+      <point x="795.2615428084573" y="119.0" />
+      <point x="38.78125" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_02_Detail" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="69.59999999999991" y="-14.5" />
+      <point x="245.11367975379108" y="816.0" />
+      <point x="1936.775641025641" y="816.0" />
+      <point x="1936.775641025641" y="199.0" />
+      <point x="1834.5914041127655" y="199.0" />
+      <point x="67.84375" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_01_edit0" target="com.example.bimbinganpasi.Form_Mhs_01">
+      <point x="0.0" y="14.5" />
+      <point x="691.6358197709474" y="478.0" />
+      <point x="673.5985576923076" y="478.0" />
+      <point x="25.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_02_inputnilai" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="75.75" y="-14.5" />
+      <point x="198.25" y="677.0" />
+      <point x="1798.6226541127655" y="677.0" />
+      <point x="1798.6226541127655" y="239.0" />
+      <point x="1792.8414041127655" y="239.0" />
+      <point x="26.09375" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_04_tambahcatatan" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-83.625" y="-14.5" />
+      <point x="413.95117975379117" y="657.0" />
+      <point x="249.5625" y="657.0" />
+      <point x="249.5625" y="149.0" />
+      <point x="713.1365428084573" y="149.0" />
+      <point x="-43.34375" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Dosen_Menu" target="com.example.bimbinganpasi.LoginActivity">
+      <point x="38.25" y="14.5" />
+      <point x="1696.3726541127655" y="806.0" />
+      <point x="957.6494398270511" y="806.0" />
+      <point x="39.714285714285666" y="-14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_03" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="50.0" y="-14.5" />
+      <point x="1354.181891025641" y="468.0" />
+      <point x="1777.7476541127655" y="468.0" />
+      <point x="1777.7476541127655" y="259.0" />
+      <point x="1771.9664041127655" y="259.0" />
+      <point x="5.21875" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_03" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-50.0" y="-14.5" />
+      <point x="1254.181891025641" y="378.0" />
+      <point x="891.7476541127655" y="378.0" />
+      <point x="891.7476541127655" y="169.0" />
+      <point x="772.4490428084573" y="169.0" />
+      <point x="15.96875" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_Menu" target="com.example.bimbinganpasi.Form_Mhs_00">
+      <point x="21.38461538461536" y="-14.5" />
+      <point x="904.5697694973808" y="637.0" />
+      <point x="1085.931891025641" y="637.0" />
+      <point x="-31.25" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_User_Notif" target="com.example.bimbinganpasi.Form_Dosen_Notif_All">
+      <point x="19.125" y="-14.5" />
+      <point x="1517.681891025641" y="428.0" />
+      <point x="1590.8101541127655" y="428.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_Menu" target="com.example.bimbinganpasi.Form_Mhs_01">
+      <point x="-21.38461538461536" y="-14.5" />
+      <point x="861.8005387281501" y="587.0" />
+      <point x="617.3485576923076" y="587.0" />
+      <point x="-31.25" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Dosen_Menu" target="com.example.bimbinganpasi.Form_User_Notif">
+      <point x="-19.125" y="-14.5" />
+      <point x="1638.9976541127655" y="547.0" />
+      <point x="1536.806891025641" y="547.0" />
+      <point x="38.25" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_Menu" target="com.example.bimbinganpasi.Form_Mhs_02">
+      <point x="-64.15384615384619" y="-14.5" />
+      <point x="819.0313079589193" y="627.0" />
+      <point x="364.22916666666674" y="627.0" />
+      <point x="41.66666666666674" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_Menu" target="com.example.bimbinganpasi.Form_Mhs_03">
+      <point x="42.76923076923072" y="-14.5" />
+      <point x="925.9543848819962" y="657.0" />
+      <point x="1304.181891025641" y="657.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_Menu" target="com.example.bimbinganpasi.Form_Mhs_04">
+      <point x="-53.46153846153845" y="-14.5" />
+      <point x="829.723615651227" y="617.0" />
+      <point x="517.375" y="617.0" />
+      <point x="31.25" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_Menu" target="com.example.bimbinganpasi.Form_Mhs_05">
+      <point x="10.692307692307736" y="-14.5" />
+      <point x="893.8774618050732" y="627.0" />
+      <point x="930.181891025641" y="627.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.LoginActivity" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-39.714285714285666" y="-14.5" />
+      <point x="878.2208683984798" y="786.0" />
+      <point x="245.0" y="786.0" />
+      <point x="245.0" y="139.0" />
+      <point x="708.5740428084573" y="139.0" />
+      <point x="-47.90625" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_Menu" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-32.076923076923094" y="-14.5" />
+      <point x="851.1082310358424" y="597.0" />
+      <point x="569.8173076923076" y="597.0" />
+      <point x="569.8173076923076" y="179.0" />
+      <point x="726.8240428084573" y="179.0" />
+      <point x="-29.65625" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_Menu" target="com.example.bimbinganpasi.LoginActivity">
+      <point x="34.75" y="14.5" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_01_edit0" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="55.66666666666674" y="-14.5" />
+      <point x="747.3024864376141" y="229.0" />
+      <point x="1688.4664041127655" y="229.0" />
+      <point x="-78.28125" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.LoginActivity" target="com.example.bimbinganpasi.Form_Mhs_Menu">
+      <point x="-19.85714285714289" y="-14.5" />
+      <point x="898.0780112556226" y="776.0" />
+      <point x="848.4351541127655" y="776.0" />
+      <point x="-34.75" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_00" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="50.0" y="-14.5" />
+      <point x="1167.181891025641" y="458.0" />
+      <point x="1767.3101541127655" y="458.0" />
+      <point x="1767.3101541127655" y="269.0" />
+      <point x="1761.5289041127655" y="269.0" />
+      <point x="-5.21875" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_00" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-25.0" y="-14.5" />
+      <point x="1092.181891025641" y="388.0" />
+      <point x="887.1851541127655" y="388.0" />
+      <point x="887.1851541127655" y="179.0" />
+      <point x="767.8865428084573" y="179.0" />
+      <point x="11.40625" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_Menu" target="com.example.bimbinganpasi.Form_User_Notif">
+      <point x="53.46153846153845" y="-14.5" />
+      <point x="936.6466925743039" y="667.0" />
+      <point x="1460.306891025641" y="667.0" />
+      <point x="-38.25" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_05_tambah" target="com.example.bimbinganpasi.Form_Mhs_05">
+      <point x="43.5" y="14.5" />
+      <point x="1059.3101541127655" y="428.0" />
+      <point x="955.181891025641" y="428.0" />
+      <point x="25.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_Menu" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="64.15384615384619" y="-14.5" />
+      <point x="947.3390002666117" y="697.0" />
+      <point x="1831.915064102564" y="697.0" />
+      <point x="1831.915064102564" y="219.0" />
+      <point x="1813.7164041127655" y="219.0" />
+      <point x="46.96875" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_01" target="com.example.bimbinganpasi.Form_Mhs_01_edit0">
+      <point x="0.0" y="-14.5" />
+      <point x="648.5985576923076" y="478.0" />
+      <point x="635.9691531042806" y="478.0" />
+      <point x="-55.66666666666674" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_03_tambah" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-58.0" y="-14.5" />
+      <point x="1331.8101541127655" y="89.0" />
+      <point x="808.9490428084573" y="89.0" />
+      <point x="52.46875" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_00_edit" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="53.333333333333314" y="-14.5" />
+      <point x="1256.1434874460988" y="249.0" />
+      <point x="1709.3414041127655" y="249.0" />
+      <point x="-57.40625" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_04_tambahcatatan" target="com.example.bimbinganpasi.Form_Mhs_04">
+      <point x="27.875" y="-14.5" />
+      <point x="525.4511797537912" y="637.0" />
+      <point x="454.875" y="637.0" />
+      <point x="-31.25" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_05" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="50.0" y="-14.5" />
+      <point x="980.181891025641" y="448.0" />
+      <point x="1756.8726541127655" y="448.0" />
+      <point x="1756.8726541127655" y="279.0" />
+      <point x="1751.0914041127655" y="279.0" />
+      <point x="-15.65625" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_03_tambah" target="com.example.bimbinganpasi.Form_Mhs_03">
+      <point x="43.5" y="14.5" />
+      <point x="1433.3101541127655" y="428.0" />
+      <point x="1329.181891025641" y="428.0" />
+      <point x="25.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.LoginActivity" target="com.example.bimbinganpasi.Form_Dosen_Menu">
+      <point x="19.85714285714289" y="-14.5" />
+      <point x="937.7922969699084" y="796.0" />
+      <point x="1619.8726541127655" y="796.0" />
+      <point x="-38.25" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_00" target="com.example.bimbinganpasi.Form_Mhs_Menu">
+      <point x="31.25" y="14.5" />
+      <point x="1148.431891025641" y="647.0" />
+      <point x="915.2620771896886" y="647.0" />
+      <point x="32.076923076923094" y="-14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_04_tambahcatatan" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="83.625" y="-14.5" />
+      <point x="581.2011797537912" y="687.0" />
+      <point x="1809.0601541127655" y="687.0" />
+      <point x="1809.0601541127655" y="229.0" />
+      <point x="1803.2789041127655" y="229.0" />
+      <point x="36.53125" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_00" target="com.example.bimbinganpasi.Form_Mhs_00_edit">
+      <point x="0.0" y="-14.5" />
+      <point x="1117.181891025641" y="418.0" />
+      <point x="1162.8101541127655" y="418.0" />
+      <point x="-40.0" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Dosen_Menu" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="57.375" y="-14.5" />
+      <point x="1715.4976541127655" y="707.0" />
+      <point x="1916.744391025641" y="707.0" />
+      <point x="1916.744391025641" y="209.0" />
+      <point x="1824.1539041127655" y="209.0" />
+      <point x="57.40625" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_02_inputnilai" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-25.25" y="-14.5" />
+      <point x="97.25" y="119.0" />
+      <point x="699.4490428084573" y="119.0" />
+      <point x="-57.03125" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_02_Detail" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-34.799999999999955" y="-14.5" />
+      <point x="140.7136797537912" y="816.0" />
+      <point x="11.0" y="816.0" />
+      <point x="11.0" y="99.0" />
+      <point x="690.3240428084573" y="99.0" />
+      <point x="-66.15625" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_01" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="50.0" y="-14.5" />
+      <point x="698.5985576923076" y="438.0" />
+      <point x="1695.3101541127655" y="438.0" />
+      <point x="1695.3101541127655" y="279.0" />
+      <point x="1740.6539041127655" y="279.0" />
+      <point x="-26.09375" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_03" target="com.example.bimbinganpasi.Form_Mhs_03_tambah">
+      <point x="0.0" y="-14.5" />
+      <point x="1304.181891025641" y="418.0" />
+      <point x="1346.3101541127655" y="418.0" />
+      <point x="-43.5" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_01" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-50.0" y="-14.5" />
+      <point x="598.5985576923076" y="478.0" />
+      <point x="586.6358197709474" y="478.0" />
+      <point x="586.6358197709474" y="189.0" />
+      <point x="731.3865428084573" y="189.0" />
+      <point x="-25.09375" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_05_tambah" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="58.000000000000114" y="-14.5" />
+      <point x="1073.8101541127655" y="239.0" />
+      <point x="1698.9039041127655" y="239.0" />
+      <point x="-67.84375" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_00_edit" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-53.33333333333337" y="-14.5" />
+      <point x="1149.476820779432" y="109.0" />
+      <point x="799.8240428084573" y="109.0" />
+      <point x="43.34375" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_03_tambah" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="58.0" y="-14.5" />
+      <point x="1447.8101541127655" y="259.0" />
+      <point x="1719.7789041127655" y="259.0" />
+      <point x="-46.96875" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Dosen_Notif_All" target="com.example.bimbinganpasi.PreferencesHelper">
+      <point x="62.66666666666663" y="-14.5" />
+      <point x="1653.4768207794323" y="269.0" />
+      <point x="1730.2164041127655" y="269.0" />
+      <point x="-36.53125" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_05" target="com.example.bimbinganpasi.BaseAPIService">
+      <point x="-25.0" y="-14.5" />
+      <point x="905.181891025641" y="408.0" />
+      <point x="815.9170697709474" y="408.0" />
+      <point x="815.9170697709474" y="199.0" />
+      <point x="758.7615428084573" y="199.0" />
+      <point x="2.28125" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_02_Detail" target="com.example.bimbinganpasi.Form_Mhs_02_inputnilai">
+      <point x="0.0" y="-14.5" />
+      <point x="175.51367975379117" y="806.0" />
+      <point x="122.5" y="806.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.bimbinganpasi.Form_Mhs_01" target="com.example.bimbinganpasi.Form_Mhs_Menu">
+      <point x="31.25" y="14.5" />
+      <point x="679.8485576923076" y="577.0" />
+      <point x="872.4928464204579" y="577.0" />
+      <point x="-10.692307692307622" y="-14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="641.7499999999995" y="329.16666666666674" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -184,6 +184,7 @@ public class Form_Mhs_02_inputnilai extends AppCompatActivity {
                 }}}
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
+                Toast.makeText(mContext, "Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
             }
         });
     }

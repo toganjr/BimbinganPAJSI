@@ -329,7 +329,7 @@ public class Form_Mhs_Menu extends AppCompatActivity {
         });
     }
 
-    public void F0_getPhoto(String UserId){
+    public void getPhoto(String UserId){
         Call<UserDataResponse> getPhoto = mApiService.getImage(
                 UserId);
         getPhoto.enqueue(new Callback<UserDataResponse>() {
@@ -410,11 +410,11 @@ public class Form_Mhs_Menu extends AppCompatActivity {
         if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
             requestData(String.valueOf(mPrefs.getUserID()));
             checkMhsKat(String.valueOf(mPrefs.getUserID()));
-            F0_getPhoto(String.valueOf(mPrefs.getUserID()));
+            getPhoto(String.valueOf(mPrefs.getUserID()));
         } else if (mPrefs.getUserType().equalsIgnoreCase("dosen")){
             requestData(String.valueOf(mPrefs.getSelectedUserId()));
             checkMhsKat(String.valueOf(mPrefs.getSelectedUserId()));
-            F0_getPhoto(String.valueOf(mPrefs.getSelectedUserId()));
+            getPhoto(String.valueOf(mPrefs.getSelectedUserId()));
         }
     }
 

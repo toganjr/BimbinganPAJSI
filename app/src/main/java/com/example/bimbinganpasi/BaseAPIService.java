@@ -37,7 +37,6 @@ import retrofit2.http.PartMap;
 
 public interface BaseAPIService {
 
-    // Fungsi ini untuk memanggil API http://10.0.2.2/mahasiswa/login.php
     @FormUrlEncoded
     @POST("include/login.php")
     Call<UserIDResponse> loginRequest(@Field("nomor_induk") String nomor_induk,
@@ -354,10 +353,4 @@ public interface BaseAPIService {
     Call<MessageResponse> updateNotifStats(@Field("no") int no);
 
 
-    // Fungsi ini untuk memanggil API http://10.0.2.2/mahasiswa/register.php
-  // @FormUrlEncoded
-   // @POST("register.php")
-   // Call<ResponseBody> registerRequest(@Field("nama") String nama,
-                  //                     @Field("email") String email,
-                  //                     @Field("password") String password);
 }

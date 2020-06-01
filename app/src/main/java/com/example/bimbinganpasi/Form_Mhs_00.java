@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,13 +41,17 @@ public class Form_Mhs_00 extends AppCompatActivity {
             TVF0_email2,TVF0_mobile_phone,TVF0_mobile_phone2,TVF0_alamat_mlg,TVF0_alamat_asal,
             TVF0_sma_asal,TVF0_hobby,TVF0_ekskul,TVF0_nama_ortu,TVF0_alamat_ortu,TVF0_email_ortu,TVF0_mobilephone_ortu,
             TVF0_id_fb,TVF0_id_ig,TVF0_id_line,TVF0_numb_wa;
+    private RelativeLayout bio_mhs,bio_wali,bio_sosmed;
+    private LinearLayout isi_mhs,isi_wali,isi_sosmed;
     private ImageView IVF0_mhs;
+    private int state_mhs,state_wali,state_sosmed = 0;
     PreferencesHelper mPrefs;
     BaseAPIService mApiService;
     Context mContext;
     private List <UserDataResponse> mListUserData;
     public static Activity Form_Mhs_00;
     ProgressDialog loading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +89,13 @@ public class Form_Mhs_00 extends AppCompatActivity {
 
         IVF0_mhs = (ImageView) findViewById(R.id.ImgMhs);
 
+        bio_mhs = (RelativeLayout) findViewById(R.id.bio_mhs);
+        bio_wali = (RelativeLayout) findViewById(R.id.bio_wali);
+        bio_sosmed = (RelativeLayout) findViewById(R.id.bio_sosmed);
+        isi_mhs = (LinearLayout) findViewById(R.id.bio_mhs_isi);
+        isi_wali = (LinearLayout) findViewById(R.id.bio_wali_isi);
+        isi_sosmed = (LinearLayout) findViewById(R.id.bio_sosmed_isi);
+
         checkUserType();
 
         loading = new ProgressDialog(this);
@@ -90,6 +103,48 @@ public class Form_Mhs_00 extends AppCompatActivity {
         loading.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
         loading.show(); // Display Progress Dialog
         loading.setCancelable(false);
+
+        bio_mhs.setOnClickListener(new View.OnClickListener(){
+                                           @Override
+                                           public void onClick(View view) {
+                                               if (state_mhs == 0) {
+                                                   isi_mhs.setVisibility(View.VISIBLE);
+                                                   state_mhs = 1;
+                                               } else {
+                                                   isi_mhs.setVisibility(View.GONE);
+                                                   state_mhs = 0;
+                                               }
+                                           }
+                                       }
+        );
+
+        bio_wali.setOnClickListener(new View.OnClickListener(){
+                                           @Override
+                                           public void onClick(View view) {
+                                               if (state_wali == 0) {
+                                                   isi_wali.setVisibility(View.VISIBLE);
+                                                   state_wali = 1;
+                                               } else {
+                                                   isi_wali.setVisibility(View.GONE);
+                                                   state_wali = 0;
+                                               }
+                                           }
+                                       }
+        );
+
+        bio_sosmed.setOnClickListener(new View.OnClickListener(){
+                                           @Override
+                                           public void onClick(View view) {
+                                               if (state_sosmed == 0) {
+                                                   isi_sosmed.setVisibility(View.VISIBLE);
+                                                   state_sosmed = 1;
+                                               } else {
+                                                   isi_sosmed.setVisibility(View.GONE);
+                                                   state_sosmed = 0;
+                                               }
+                                           }
+                                       }
+        );
 
         Btn_F0_Edit.setOnClickListener(new View.OnClickListener(){
             @Override

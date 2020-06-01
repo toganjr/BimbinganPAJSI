@@ -132,7 +132,7 @@ public class Form_Mhs_01_edit2 extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    Toast.makeText(mContext, "EDIT GAGAL., Periksa jaringan anda!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "EDIT GAGAL", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(mContext, Form_Mhs_01.class);
                     startActivity(intent);
                     finish();
@@ -141,7 +141,7 @@ public class Form_Mhs_01_edit2 extends AppCompatActivity {
             @Override
             public void onFailure(Call<MilestoneDataResponse> call, Throwable t){
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
-                Toast.makeText(mContext, "UPLOAD GAGAL.., Harap isi semua data!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, Form_Mhs_Menu.class);
                 startActivity(intent);
                 finish();

@@ -27,14 +27,14 @@
                     android:id="@+id/TV05_cardview_materi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Bimbingan Semester"
+                    android:text="Bimbingan Semester "
                     android:textSize="20dp"
                     android:textColor="@color/black"
 
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
 
-                    app:layout_constraintWidth_percent="0.7"
+                    app:layout_constraintWidth_percent="0.9"
                     app:layout_constraintWidth_default="percent"
                     />
                 <ImageView

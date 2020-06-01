@@ -129,13 +129,6 @@ public class Form_Mhs_02_tambah extends AppCompatActivity {
         });
     }
 
-//    private void receiveData()
-//    {
-//        //RECEIVE DATA VIA INTENT
-//        Intent i = getIntent();
-//        semester_min = i.getIntExtra("semester_min",0);
-//    }
-
     public void tambahMatkul(int no_user_id, int no_matkul, String target, int semester){
         Call<tambahMatkulResponse> tambahMatkul = mApiService.tambahMatkulMhs(
                 no_user_id,

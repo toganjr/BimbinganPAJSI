@@ -2,11 +2,15 @@
 <Diagram>
   <ID>JAVA</ID>
   <OriginalElement />
-  <nodes />
+  <nodes>
+    <node x="0.0" y="0.0">com.example.bimbinganpasi.Form_Mhs_02_Detail</node>
+  </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="0.40000000000000013" x="500.9090909090909" y="487.4999999999998" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="0.5000000000000001" x="1229.333333333333" y="680.4999999999998" />
+  <SelectedNodes>
+    <node>com.example.bimbinganpasi.Form_Mhs_02_Detail</node>
+  </SelectedNodes>
   <Categories>
     <Category>Inner Classes</Category>
   </Categories>
