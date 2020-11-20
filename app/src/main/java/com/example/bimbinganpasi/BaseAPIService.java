@@ -19,6 +19,7 @@ import com.example.bimbinganpasi.Data.MilestoneDataResponse;
 import com.example.bimbinganpasi.Data.NotifResponse;
 import com.example.bimbinganpasi.Data.Porto_Mhs;
 import com.example.bimbinganpasi.Data.PortofolioMhsResponse;
+import com.example.bimbinganpasi.Data.SentNotifResponse;
 import com.example.bimbinganpasi.Data.UserDataResponse;
 import com.example.bimbinganpasi.Data.UserIDResponse;
 import com.example.bimbinganpasi.Data.tambahMatkulResponse;
@@ -336,13 +337,25 @@ public interface BaseAPIService {
 
     @FormUrlEncoded
     @POST("include/gcm.php?push=3")
-    Call<MessageResponse> pushFCMsingle(@Field("user_id") int user_id,
+    Call<MessageResponse> pushAllmhs(@Field("no_id") int no_id,
+                                     @Field("dari") String dari,
+                                     @Field("message") String message);
+
+    @FormUrlEncoded
+    @POST("include/gcm.php?push=4")
+    Call<MessageResponse> pushFCMsingle(@Field("no_id") int no_id,
+                                        @Field("user_id") int user_id,
                                         @Field("dari") String dari,
+                                        @Field("ke") String ke,
                                         @Field("message") String message);
 
     @FormUrlEncoded
     @POST("include/getNotifUser.php")
     Call<NotifResponse> getNotifUser(@Field("no") int no);
+
+    @FormUrlEncoded
+    @POST("include/getSentNotif.php")
+    Call<SentNotifResponse> getSentNotif(@Field("no") int no);
 
     @FormUrlEncoded
     @POST("include/getNewNotif.php")

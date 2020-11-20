@@ -73,11 +73,17 @@ public class Form_Mhs_02_inputnilai extends AppCompatActivity {
                                                           .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                                               public void onClick(DialogInterface dialog, int which) {
                                                                   // Continue with delete operation
-                                                                  BigDecimal nilai_pre = rubahformatnilai(et_nilairealisasi.getText().toString());
-                                                                  nilai = String.valueOf(nilai_akhir(nilai_pre));
-                                                                  tambahIP(String.valueOf(mPrefs.getUserID()),nilai,sks_matkul,semester);
-                                                                  tambahIPK(String.valueOf(mPrefs.getUserID()),nilai,sks_matkul,semester);
-                                                                  updateNilaiMatkul(no_matkul,et_nilairealisasi.getText().toString(),nilai);
+                                                                  if(!et_nilairealisasi.getText().toString().equalsIgnoreCase("E")){
+                                                                      BigDecimal nilai_pre = rubahformatnilai(et_nilairealisasi.getText().toString());
+                                                                      nilai = String.valueOf(nilai_akhir(nilai_pre));
+                                                                      tambahIP(String.valueOf(mPrefs.getUserID()),nilai,sks_matkul,semester);
+                                                                      tambahIPK(String.valueOf(mPrefs.getUserID()),nilai,sks_matkul,semester);
+                                                                      updateNilaiMatkul(no_matkul,et_nilairealisasi.getText().toString(),nilai);
+                                                                  } else {
+                                                                      BigDecimal nilai_pre = rubahformatnilai(et_nilairealisasi.getText().toString());
+                                                                      nilai = String.valueOf(nilai_akhir(nilai_pre));
+                                                                      updateNilaiMatkul(no_matkul,et_nilairealisasi.getText().toString(),nilai);
+                                                                  }
                                                               }
                                                           })
 

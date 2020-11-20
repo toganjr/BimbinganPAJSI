@@ -62,7 +62,9 @@ public class Form_Dosen_Notif_All extends AppCompatActivity {
                                            if (setIsi.getText().toString().equals("")){
                                                Toast.makeText(mContext, "Masukkan Isi Notifikasi", Toast.LENGTH_SHORT).show();
                                            } else {
-                                               tambahNotif(mPrefs.getUserName(),setIsi.getText().toString());
+                                               tambahNotif(mPrefs.getUserID(),mPrefs.getUserName(),setIsi.getText().toString());
+                                               Intent intent = new Intent(mContext, Form_Notif_Sent.class);
+                                               startActivity(intent);
                                            }
                                        }
                                    }
@@ -77,16 +79,19 @@ public class Form_Dosen_Notif_All extends AppCompatActivity {
 //        semester_min = i.getIntExtra("semester_min",0);
 //    }
 
-    public void tambahNotif(String dari, String message){
-        Call<MessageResponse> pushFCMmhs = mApiService.pushFCMmhs(
+    public void tambahNotif(int no_id,String dari, String message){
+        Call<MessageResponse> pushAllmhs = mApiService.pushAllmhs(
+                no_id,
                 dari,
                 message);
-        pushFCMmhs.enqueue(new Callback<MessageResponse>() {
+        pushAllmhs.enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(mContext, "Notifikasi telah dikirim", Toast.LENGTH_SHORT).show();
                     finish();
+                    Form_User_Notif.Form_User_Notif.finish();
+                    Form_Notif_Sent.Form_Notif_Sent.finish();
                 } else {
                     Toast.makeText(mContext, "Gagal mengirim notifikasi", Toast.LENGTH_SHORT).show();
                 }

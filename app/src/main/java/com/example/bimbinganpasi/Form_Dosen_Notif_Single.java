@@ -39,7 +39,7 @@ public class Form_Dosen_Notif_Single extends AppCompatActivity {
     Button btnSend;
 
     int no_mahasiswa;
-    String target;
+    String target,nama_mahasiswa;
     int[] no_id,semester;
     String [] nim,nama;
     Context mContext;
@@ -65,7 +65,9 @@ public class Form_Dosen_Notif_Single extends AppCompatActivity {
                                            if (setIsi.getText().toString().equals("")){
                                                Toast.makeText(mContext, "Masukkan Isi Notifikasi", Toast.LENGTH_SHORT).show();
                                            } else {
-                                               tambahNotif(no_mahasiswa,mPrefs.getUserName(),setIsi.getText().toString());
+                                               tambahNotif(mPrefs.getUserID(),no_mahasiswa,mPrefs.getUserName(),nama_mahasiswa,setIsi.getText().toString());
+                                               Intent intent = new Intent(mContext, Form_Notif_Sent.class);
+                                               startActivity(intent);
                                            }
                                        }
                                    }
@@ -79,6 +81,7 @@ public class Form_Dosen_Notif_Single extends AppCompatActivity {
                 if (position > 0){
                     Toast.makeText(mContext, "Anda memilih " + nama[position-1], Toast.LENGTH_SHORT).show();
                     no_mahasiswa = no_id[position-1];
+                    nama_mahasiswa = nama[position-1];
                 } else {
                     Toast.makeText(mContext, "Pilih mahasiswa", Toast.LENGTH_SHORT).show();
                 }
@@ -138,10 +141,12 @@ public class Form_Dosen_Notif_Single extends AppCompatActivity {
 //        semester_min = i.getIntExtra("semester_min",0);
 //    }
 
-    public void tambahNotif(int user_id, String dari, String message){
+    public void tambahNotif(int no_id, int user_id, String dari, String ke, String message){
         Call<MessageResponse> pushFCMSingle = mApiService.pushFCMsingle(
+                no_id,
                 user_id,
                 dari,
+                ke,
                 message);
         pushFCMSingle.enqueue(new Callback<MessageResponse>() {
             @Override
@@ -149,6 +154,8 @@ public class Form_Dosen_Notif_Single extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(mContext, "Notifikasi telah dikirim", Toast.LENGTH_SHORT).show();
                     finish();
+                    Form_User_Notif.Form_User_Notif.finish();
+                    Form_Notif_Sent.Form_Notif_Sent.finish();
                 } else {
                     Toast.makeText(mContext, "Gagal mengirim notifikasi", Toast.LENGTH_SHORT).show();
                 }

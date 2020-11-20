@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Kosong"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,11 +29,10 @@
             android:theme="@style/AppTheme"
             />
         <activity android:name=".LoginActivity"/>
-        <activity
-            android:name=".Form_Mhs_00"
-            android:launchMode="singleInstance"></activity>
+        <activity android:name=".Form_Mhs_00"/>
         <activity android:name=".Form_Change_Password"/>
         <activity android:name=".Form_User_Notif"/>
+        <activity android:name=".Form_Notif_Sent"/>
         <activity android:name=".Form_Dosen_Notif_Single"/>
         <activity android:name=".Form_Dosen_Notif_All"/>
         <activity android:name=".Form_Mhs_00_edit" />

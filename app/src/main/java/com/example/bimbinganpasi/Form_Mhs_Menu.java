@@ -89,11 +89,10 @@ public class Form_Mhs_Menu extends AppCompatActivity {
         }
         );
         Btn_F1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                MhsForm01();
-            }
-        }
+                                      @Override
+                                      public void onClick(View view) { MhsForm01();
+                                    }
+                                   }
         );
         Btn_F2.setOnClickListener(new View.OnClickListener(){
                                       @Override
@@ -131,7 +130,7 @@ public class Form_Mhs_Menu extends AppCompatActivity {
     }
 
     public void MhsForm00(){
-        Intent intent = new Intent(this, Form_Mhs_00.class);
+        Intent intent = new Intent( this, Form_Mhs_00.class);
         startActivity(intent);
     }
     public void MhsForm01(){

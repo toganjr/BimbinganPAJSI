@@ -26,9 +26,11 @@ import com.example.bimbinganpasi.Data.Logbook_Mhs;
 import com.example.bimbinganpasi.Data.MessageResponse;
 import com.example.bimbinganpasi.Data.Notif;
 import com.example.bimbinganpasi.Data.NotifResponse;
+import com.example.bimbinganpasi.Data.NotifSent;
 import com.example.bimbinganpasi.Data.Porto_Mhs;
 import com.example.bimbinganpasi.Data.PortofolioMhsResponse;
-import com.example.bimbinganpasi.Form_Notif.Adapter.DataNote;
+import com.example.bimbinganpasi.Data.SentNotifResponse;
+import com.example.bimbinganpasi.Sent_Notif.DataNote;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Form_User_Notif extends AppCompatActivity {
+public class Form_Notif_Sent extends AppCompatActivity {
 
     BaseAPIService mApiService;
     PreferencesHelper mPrefs;
@@ -47,7 +49,7 @@ public class Form_User_Notif extends AppCompatActivity {
     RecyclerView listview;
     ListAdapter mListadapter;
     FloatingActionButton fabnotif_add;
-    public static Activity Form_User_Notif;
+    public static Activity Form_Notif_Sent;
 
     int [] no_list,readstatus_list;
     String [] dari_list,isi_list,ke_list,tanggal_list;
@@ -55,11 +57,11 @@ public class Form_User_Notif extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.form_user_notif);
+        setContentView(R.layout.form_notif_sent);
         mApiService = UtilsApi.getClient().create(BaseAPIService.class); // meng-init yang ada di package apihelper
         mPrefs = ((BimbPA) getApplication()).getPrefs();
         mContext = this;
-        Form_User_Notif = this;
+        Form_Notif_Sent = this;
 
         fabnotif_add = (FloatingActionButton) findViewById(R.id.fabnotif_add);
         listview = (RecyclerView)findViewById(R.id.form_user_notif_list);
@@ -82,9 +84,9 @@ public class Form_User_Notif extends AppCompatActivity {
 
     private void SelectChoice(){
 
-        final CharSequence[] items={"Pesan Terkirim","Ke Mahasiswa","Ke Semua Mahasiswa", "Cancel"};
+        final CharSequence[] items={"Pesan Diterima","Ke Mahasiswa","Ke Semua Mahasiswa", "Cancel"};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(Form_User_Notif.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Form_Notif_Sent.this);
         builder.setTitle("Pilih jenis penerima notifikasi");
 
         builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -99,9 +101,9 @@ public class Form_User_Notif extends AppCompatActivity {
 
                     sendAll();
 
-                } else if (items[i].equals("Pesan Terkirim")) {
+                } else if (items[i].equals("Pesan Diterima")) {
 
-                    sentNotif();
+                    AllNotif();
 
                 } else if (items[i].equals("Cancel")) {
                     dialogInterface.dismiss();
@@ -122,35 +124,33 @@ public class Form_User_Notif extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void sentNotif() {
-        Intent intent = new Intent(this, Form_Notif_Sent.class);
-        startActivity(intent);
+    public void AllNotif() {
+        Intent intent = new Intent(this, Form_User_Notif.class);
         finish();
+        startActivity(intent);
     }
 
     public void initListView(int UserId){
-        Call<NotifResponse> getNotifUser = mApiService.getNotifUser(
+        Call<SentNotifResponse> getSentNotif = mApiService.getSentNotif(
                 UserId
         );
-        getNotifUser.enqueue(new Callback<NotifResponse>() {
+        getSentNotif.enqueue(new Callback<SentNotifResponse>() {
             @Override
-            public void onResponse(Call<NotifResponse> call, Response<NotifResponse> response) {
+            public void onResponse(Call<SentNotifResponse> call, Response<SentNotifResponse> response) {
                 boolean iserror_ = response.body().getError();
                 if (iserror_ == false) {
-                    List<Notif> list = new ArrayList<>();
-                    list = response.body().getNotif();
+                    List<NotifSent> list = new ArrayList<>();
+                    list = response.body().getNotifSent();
                     no_list = new int[list.size()];
                     dari_list = new String[list.size()];
                     isi_list = new String[list.size()];
                     ke_list = new String[list.size()];
-                    readstatus_list = new int[list.size()];
                     tanggal_list =  new String[list.size()];
                     for (int i =0;i<list.size();i++) {
                         no_list[i] = list.get(i).getNo();
-                        dari_list[i] = list.get(i).getDari();
+                        dari_list[i] = String.valueOf(list.get(i).getDari());
                         isi_list[i] = list.get(i).getIsi();
                         ke_list[i]  = String.valueOf(list.get(i).getKe());
-                        readstatus_list[i] = list.get(i).getReadStatus();
                         tanggal_list[i] = list.get(i).getTanggal();
                     }
                     ArrayList data = new ArrayList<DataNote>();
@@ -163,7 +163,6 @@ public class Form_User_Notif extends AppCompatActivity {
                                                 dari_list[i],
                                                 isi_list[i],
                                                 ke_list[i],
-                                                readstatus_list[i],
                                                 tanggal_list[i]
                                         ));
                     }
@@ -173,32 +172,13 @@ public class Form_User_Notif extends AppCompatActivity {
                 }
             }
             @Override
-            public void onFailure(Call<NotifResponse> call, Throwable t) {
+            public void onFailure(Call<SentNotifResponse> call, Throwable t) {
                 Toast.makeText(mContext, "Koneksi Jaringan Bermasalah", Toast.LENGTH_SHORT).show();
                 Log.e("debug", "onFailure: ERROR > " + t.toString());
             }
         });
     }
 
-    public void updateNotifStats(int no){
-        Call<MessageResponse> updateNotifStats = mApiService.updateNotifStats(
-                no
-        );
-        updateNotifStats.enqueue(new Callback<MessageResponse>() {
-            @Override
-            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-                boolean iserror_ = response.body().getError();
-                if (iserror_ == false) {
-                    Log.e("debug", "update notifikasi berhasil");
-                }
-            }
-            @Override
-            public void onFailure(Call<MessageResponse> call, Throwable t) {
-                Toast.makeText(mContext, "Koneksi Jaringan Bermasalah", Toast.LENGTH_SHORT).show();
-                Log.e("debug", "onFailure: ERROR > " + t.toString());
-            }
-        });
-    }
 
     public void checkUserType(){
         if (mPrefs.getUserType().equalsIgnoreCase("mahasiswa")){
@@ -247,32 +227,24 @@ public class Form_User_Notif extends AppCompatActivity {
         @Override
         public void onBindViewHolder(ListAdapter.ViewHolder holder, final int position)
         {
-            holder.textViewDari.setText("Dari : "+dataList.get(position).getDari());
+            holder.textViewDari.setText("Ke : "+dataList.get(position).getKe());
             holder.textViewPesan.setText(dataList.get(position).getIsi());
             holder.textViewTanggal.setText(dataList.get(position).getTanggal());
-            if (dataList.get(position).getReadStatus() == 0){
-                holder.textViewDari.setTypeface(Typeface.DEFAULT_BOLD);
-                holder.textViewPesan.setTypeface(Typeface.DEFAULT_BOLD);
-            } else {
-                holder.textViewDari.setTypeface(Typeface.DEFAULT);
-                holder.textViewPesan.setTypeface(Typeface.DEFAULT);
-            }
             holder.itemView.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
                     new AlertDialog.Builder(mContext)
-                        .setTitle(dataList.get(position).getDari())
-                        .setMessage(dataList.get(position).getIsi())
+                            .setTitle(dataList.get(position).getKe())
+                            .setMessage(dataList.get(position).getIsi())
 
-                        // Specifying a listener allows you to take an action before dismissing the dialog.
-                        // The dialog is automatically dismissed when a dialog button is clicked.
-                        // A null listener allows the button to dismiss the dialog and take no further action.
-                        .setNegativeButton("Close", null)
-                        .setIcon(R.drawable.ic_notifications_black_24dp)
-                        .show();
-                    updateNotifStats(dataList.get(position).getNo());
+                            // Specifying a listener allows you to take an action before dismissing the dialog.
+                            // The dialog is automatically dismissed when a dialog button is clicked.
+                            // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton("Close", null)
+                            .setIcon(R.drawable.ic_notifications_black_24dp)
+                            .show();
                     holder.textViewDari.setTypeface(Typeface.DEFAULT);
                     holder.textViewPesan.setTypeface(Typeface.DEFAULT);
                 }

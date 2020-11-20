@@ -50,7 +50,6 @@ public class Form_Mhs_00 extends AppCompatActivity {
     Context mContext;
     private List <UserDataResponse> mListUserData;
     public static Activity Form_Mhs_00;
-    ProgressDialog loading;
 
 
     @Override
@@ -97,12 +96,6 @@ public class Form_Mhs_00 extends AppCompatActivity {
         isi_sosmed = (LinearLayout) findViewById(R.id.bio_sosmed_isi);
 
         checkUserType();
-
-        loading = new ProgressDialog(this);
-        loading.setMessage("Loading...");
-        loading.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
-        loading.show(); // Display Progress Dialog
-        loading.setCancelable(false);
 
         bio_mhs.setOnClickListener(new View.OnClickListener(){
                                            @Override
@@ -181,7 +174,6 @@ public class Form_Mhs_00 extends AppCompatActivity {
                     public void onResponse(Call<UserDataResponse> call, Response<UserDataResponse> response) {
                             String iserror = response.body().getIserror();
                             if (iserror.equals("false")) {
-                                loading.dismiss();
                                 // Jika login berhasil maka data nama yang ada di response API
                                 // akan diparsing ke activity selanjutnya.
                                 String nama = response.body().getNama();
